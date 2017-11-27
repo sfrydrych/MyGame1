@@ -38,7 +38,6 @@ public class MyGdxGame extends Game {
     public BitmapFont font24;
     public OrthographicCamera camera;
 
-    //public LoadingScreen loadingScreen;
     public SplashScreen splashScreen;
     public SplashScreen2 splashScreen2;
     public MainMenuScreen mainMenuScreen;
@@ -62,7 +61,6 @@ public class MyGdxGame extends Game {
         manager.load("img/pwsz.png", Texture.class);
         manager.finishLoading();
 
-        //loadingScreen = new LoadingScreen(this);
         splashScreen = new SplashScreen(this);
         splashScreen2 = new SplashScreen2(this);
         mainMenuScreen = new MainMenuScreen(this);
@@ -77,7 +75,6 @@ public class MyGdxGame extends Game {
         manager.dispose();
         batch.dispose();
         font24.dispose();
-        //loadingScreen.dispose();
         splashScreen.dispose();
         splashScreen2.dispose();
         mainMenuScreen.dispose();

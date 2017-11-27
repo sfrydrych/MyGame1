@@ -33,6 +33,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class PlayScreen implements Screen {
 
+    private boolean debug = false;
     private MyGdxGame game;
     private TextureAtlas atlas;
     //public static boolean alreadyDestroyed = false;
@@ -154,7 +155,10 @@ public class PlayScreen implements Screen {
         //Render game map
         renderer.render();
         //Render Box2DDebugLines
-        b2dr.render(world, gamecam.combined);
+        if(debug) {
+            b2dr.render(world, gamecam.combined);
+        }
+
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);

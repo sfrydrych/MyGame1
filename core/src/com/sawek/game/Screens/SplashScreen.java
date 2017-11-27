@@ -55,12 +55,15 @@ public class SplashScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        if (Gdx.input.justTouched()) {
+            app.setScreen(app.splashScreen2);
+        }
+
         Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         update(delta);
         stage.draw();
-
     }
 
     public void update(float delta) {

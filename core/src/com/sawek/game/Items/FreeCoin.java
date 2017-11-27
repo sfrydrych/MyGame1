@@ -42,21 +42,23 @@ public class FreeCoin extends Item {
     protected void defineItem() {
         BodyDef bdef = new BodyDef();
         bdef.position.set(getX(), getY());
-        bdef.type = BodyDef.BodyType.DynamicBody;
+        bdef.type = BodyDef.BodyType.StaticBody;
         body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / MyGdxGame.PPM);
         fdef.filter.categoryBits = MyGdxGame.COIN_BIT;
-        fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
+        fdef.filter.maskBits = MyGdxGame.PLAYER_BIT;
+        /*fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
                 MyGdxGame.COIN_BOX_BIT |
                 MyGdxGame.BRICK_BIT |
                 MyGdxGame.ENEMY_BIT |
                 MyGdxGame.OBJECT_BIT |
                 MyGdxGame.PLAYER_BIT;
-
+*/
         fdef.shape = shape;
+        fdef.isSensor = true;
         body.createFixture(fdef).setUserData(this);
     }
 
@@ -83,7 +85,7 @@ public class FreeCoin extends Item {
             MyGdxGame.manager.get("audio/sounds/coin.wav", Sound.class).play();
             Hud.addScore(1000);
         } else if (!destroyed) {
-            setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+            setPosition(body.getPosition().x - getWidth() / 2, (body.getPosition().y - getHeight() / 2) + (8 / MyGdxGame.PPM));
             setRegion(blinkAnimation.getKeyFrame(stateTime, true));
         }
     }
