@@ -71,7 +71,7 @@ public class MyGdxGame extends Game {
         mainMenuScreen = new MainMenuScreen(this);
         playScreen = new PlayScreen(this);
         //setScreen(new PlayScreen(this));
-        this.setScreen(mainMenuScreen);
+        this.setScreen(splashScreen);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class SplashScreen2 implements Screen {
         Runnable transitionRunnable = new Runnable() {
             @Override
             public void run() {
-                app.setScreen(app.playScreen);
+                app.setScreen(app.mainMenuScreen);
             }
         };
 
@@ -56,7 +56,7 @@ public class SplashScreen2 implements Screen {
     @Override
     public void render(float delta) {
         if (Gdx.input.justTouched()) {
-            app.setScreen(app.playScreen);
+            app.setScreen(app.mainMenuScreen);
         }
 
         Gdx.gl.glClearColor(1f, 1f, 1f, 1f);

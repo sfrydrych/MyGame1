@@ -28,6 +28,21 @@ public class MainMenuScreen implements Screen {
 
         this.app = app;
         this.stage = new Stage(new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, app.camera));
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    private void update(float delta) {
+        stage.act(delta);
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -54,22 +69,6 @@ public class MainMenuScreen implements Screen {
         });
         exitImg.addAction(scaleTo(.160f, .160f));
         stage.addActor(exitImg);
-    }
-
-    @Override
-    public void show() {
-
-
-    }
-
-    private void update(float delta) {
-        stage.act(delta);
-    }
-
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         update(delta);
         stage.draw();
