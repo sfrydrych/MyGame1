@@ -33,6 +33,7 @@ public class MyGdxGame extends Game {
     public static final short ENEMY_HEAD_BIT = 256;
     public static final short PLAYER_HEAD_BIT = 512;
     public static final short WIN_WALL_BIT = 1024;
+
     public static AssetManager manager;
     public SpriteBatch batch;
     public BitmapFont font24;
@@ -59,6 +60,10 @@ public class MyGdxGame extends Game {
         manager.load("audio/sounds/mariodie.wav", Sound.class);
         manager.load("img/libgdx.png", Texture.class);
         manager.load("img/pwsz.png", Texture.class);
+        manager.load("img/play_button_active.png", Texture.class);
+        manager.load("img/exit_button_active.png", Texture.class);
+        manager.load("img/play_button_inactive.png", Texture.class);
+        manager.load("img/exit_button_inactive.png", Texture.class);
         manager.finishLoading();
 
         splashScreen = new SplashScreen(this);
@@ -66,7 +71,7 @@ public class MyGdxGame extends Game {
         mainMenuScreen = new MainMenuScreen(this);
         playScreen = new PlayScreen(this);
         //setScreen(new PlayScreen(this));
-        this.setScreen(splashScreen);
+        this.setScreen(mainMenuScreen);
     }
 
     @Override
