@@ -5,12 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.sawek.game.Screens.MainMenuScreen;
 import com.sawek.game.Screens.PlayScreen;
 import com.sawek.game.Screens.SplashScreen;
@@ -27,16 +24,17 @@ public class MyGdxGame extends Game {
     public static final short BRICK_BIT = 4;
     public static final short COIN_BOX_BIT = 8;
     public static final short COIN_BIT = 16;
-    public static final short DESTROYED_BIT = 32;
-    public static final short OBJECT_BIT = 64;
-    public static final short ENEMY_BIT = 128;
-    public static final short ENEMY_HEAD_BIT = 256;
-    public static final short PLAYER_HEAD_BIT = 512;
-    public static final short WIN_WALL_BIT = 1024;
+    public static final short INDEKS_BOX_BIT = 32;
+    public static final short INDEKS_BIT = 64;
+    public static final short DESTROYED_BIT = 128;
+    public static final short OBJECT_BIT = 256;
+    public static final short ENEMY_BIT = 512;
+    public static final short ENEMY_HEAD_BIT = 1024;
+    public static final short PLAYER_HEAD_BIT = 2048;
+    public static final short WIN_WALL_BIT = 4096;
 
     public static AssetManager manager;
     public SpriteBatch batch;
-    public BitmapFont font24;
     public OrthographicCamera camera;
 
     public SplashScreen splashScreen;
@@ -50,7 +48,6 @@ public class MyGdxGame extends Game {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, V_WIDTH, V_HEIGHT);
         batch = new SpriteBatch();
-        initFonts();
         manager = new AssetManager();
         //manager.load("audio/music/mario_music.ogg", Music.class);
         manager.load("audio/sounds/coin.wav", Sound.class);
@@ -64,6 +61,7 @@ public class MyGdxGame extends Game {
         manager.load("img/exit_button_active.png", Texture.class);
         manager.load("img/play_button_inactive.png", Texture.class);
         manager.load("img/exit_button_inactive.png", Texture.class);
+        //manager.load("img/bgs.png", Texture.class);
         manager.finishLoading();
 
         splashScreen = new SplashScreen(this);
@@ -79,7 +77,6 @@ public class MyGdxGame extends Game {
         super.dispose();
         manager.dispose();
         batch.dispose();
-        font24.dispose();
         splashScreen.dispose();
         splashScreen2.dispose();
         mainMenuScreen.dispose();
@@ -94,14 +91,5 @@ public class MyGdxGame extends Game {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();
         }
-    }
-
-    private void initFonts() {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/font.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
-
-        params.size = 24;
-        params.color = Color.BLACK;
-        font24 = generator.generateFont(params);
     }
 }

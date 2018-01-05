@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.sawek.game.MyGdxGame;
 import com.sawek.game.Screens.PlayScreen;
 import com.sawek.game.Sprites.CoinBox;
+import com.sawek.game.Sprites.IndeksBox;
 import com.sawek.game.Sprites.Player;
 
 /**
@@ -37,6 +38,8 @@ public abstract class Item extends Sprite {
     public abstract void use(CoinBox coinBox);
 
     public abstract void use2(Player player);
+
+    public abstract void use3(IndeksBox indeksBox);
 
     public void update(float dt) {
         if (toDestroy && !destroyed) {

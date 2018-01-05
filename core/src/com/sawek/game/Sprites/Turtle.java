@@ -57,6 +57,7 @@ public class Turtle extends Enemy {
         fdef.filter.categoryBits = MyGdxGame.ENEMY_BIT;
         fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
                 MyGdxGame.COIN_BOX_BIT |
+                MyGdxGame.INDEKS_BOX_BIT |
                 MyGdxGame.BRICK_BIT |
                 MyGdxGame.ENEMY_BIT |
                 MyGdxGame.OBJECT_BIT |
@@ -140,10 +141,12 @@ public class Turtle extends Enemy {
         if (currentState != State.STANDING_SHELL) {
             currentState = State.STANDING_SHELL;
             MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+            Hud.addScore(150);
             velocity.x = 0;
         } else {
             kick(player.getX() <= this.getX() ? KICK_RIGHT_SPEED : KICK_LEFT_SPEED);
             MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+            Hud.addScore(50);
         }
     }
 

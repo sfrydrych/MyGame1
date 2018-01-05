@@ -9,6 +9,7 @@ import com.sawek.game.Items.Item;
 import com.sawek.game.MyGdxGame;
 import com.sawek.game.Sprites.CoinBox;
 import com.sawek.game.Sprites.Enemy;
+import com.sawek.game.Sprites.IndeksBox;
 import com.sawek.game.Sprites.InteractiveTileObject;
 import com.sawek.game.Sprites.Player;
 
@@ -27,6 +28,7 @@ public class WorldContactListener implements ContactListener {
         switch (cDef) {
             case MyGdxGame.PLAYER_HEAD_BIT | MyGdxGame.BRICK_BIT:
             case MyGdxGame.PLAYER_HEAD_BIT | MyGdxGame.COIN_BOX_BIT:
+            case MyGdxGame.PLAYER_HEAD_BIT | MyGdxGame.INDEKS_BOX_BIT:
                 if (fixA.getFilterData().categoryBits == MyGdxGame.PLAYER_HEAD_BIT)
                     ((InteractiveTileObject) fixB.getUserData()).onHeadHit((Player) fixA.getUserData());
                 else
@@ -67,6 +69,12 @@ public class WorldContactListener implements ContactListener {
                     ((Item) fixA.getUserData()).use((CoinBox) fixB.getUserData());
                 else
                     ((Item) fixB.getUserData()).use((CoinBox) fixA.getUserData());
+                break;
+            case MyGdxGame.INDEKS_BIT | MyGdxGame.INDEKS_BOX_BIT:
+                if (fixA.getFilterData().categoryBits == MyGdxGame.COIN_BIT)
+                    ((Item) fixA.getUserData()).use3((IndeksBox) fixB.getUserData());
+                else
+                    ((Item) fixB.getUserData()).use3((IndeksBox) fixA.getUserData());
                 break;
             case MyGdxGame.COIN_BIT | MyGdxGame.PLAYER_BIT:
                 if(fixA.getFilterData().categoryBits == MyGdxGame.COIN_BIT)

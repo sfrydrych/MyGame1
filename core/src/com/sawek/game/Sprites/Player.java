@@ -24,8 +24,6 @@ import com.sawek.game.Screens.PlayScreen;
 
 public class Player extends Sprite {
     public State currentState;
-
-    ;
     public State previousState;
     public World world;
     public Body b2body;
@@ -40,6 +38,7 @@ public class Player extends Sprite {
     private boolean destroyed;
     private float stateTimer;
     private PlayScreen screen;
+
     public Player(PlayScreen screen) {
         this.screen = screen;
         this.world = screen.getWorld();
@@ -50,16 +49,16 @@ public class Player extends Sprite {
         destroyed = false;
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 1; i < 4; i++)
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("little_mario"), i * 16, 0, 16, 16));
+        for (int i = 1; i < 5; i++)
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("player"), i * 16, 0, 16, 23));
         playerRun = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
-        playerJump = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 80, 0, 16, 16);
-        playerStand = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 0, 0, 16, 16);
-        playerDead = new TextureRegion(screen.getAtlas().findRegion("little_mario"), 96, 0, 16, 16);
+        playerJump = new TextureRegion(screen.getAtlas().findRegion("player"), 80, 0, 16, 23);
+        playerStand = new TextureRegion(screen.getAtlas().findRegion("player"), 0, 0, 16, 23);
+        playerDead = new TextureRegion(screen.getAtlas().findRegion("player"), 96, 0, 16, 23);
 
         definePlayer();
-        setBounds(0, 0, 16 / MyGdxGame.PPM, 16 / MyGdxGame.PPM);
+        setBounds(0, 0, 16 / MyGdxGame.PPM, 23 / MyGdxGame.PPM);
         setRegion(playerStand);
     }
 
@@ -70,7 +69,7 @@ public class Player extends Sprite {
         if (b2body.getPosition().y <= 1 / MyGdxGame.PPM) {
             die();
         }
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2 + 4 / MyGdxGame.PPM);
         setRegion(getFrame(dt));
 
         if (timeToRedefinePlayer)
@@ -189,6 +188,8 @@ public class Player extends Sprite {
         fdef.filter.categoryBits = MyGdxGame.PLAYER_BIT;
         fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
                 MyGdxGame.COIN_BOX_BIT |
+                MyGdxGame.INDEKS_BOX_BIT |
+                MyGdxGame.INDEKS_BIT |
                 MyGdxGame.BRICK_BIT |
                 MyGdxGame.ENEMY_BIT |
                 MyGdxGame.OBJECT_BIT |

@@ -14,23 +14,20 @@ import com.sawek.game.Sprites.IndeksBox;
 import com.sawek.game.Sprites.Player;
 
 /**
- * Created by Sławek on 2017-10-04.
+ * Created by Sławek on 2018-01-05.
  */
 
-public class Coin extends Item {
+public class Indeks extends Item {
     private float stateTime;
     private Animation<TextureRegion> blinkAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
 
-    public Coin(PlayScreen screen, float x, float y) {
+    public Indeks(PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        //setRegion(screen.getAtlas().findRegion("goomba"), 16, 0, 16, 16);
+        setRegion(screen.getAtlas().findRegion("indeks"), 0, 0, 16, 16);
         frames = new Array<TextureRegion>();
-        for (int i = 0; i < 2; i++)
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("point"), i * 16, 0, 16, 16));
-        blinkAnimation = new Animation<TextureRegion>(0.4f, frames);
         stateTime = 0;
         setBounds(getX(), getY(), 16 / MyGdxGame.PPM, 16 / MyGdxGame.PPM);
         setToDestroy = false;
@@ -45,7 +42,7 @@ public class Coin extends Item {
 
     @Override
     public void use(CoinBox coinBox) {
-        setToDestroy = true;
+
     }
 
     @Override
@@ -55,7 +52,7 @@ public class Coin extends Item {
 
     @Override
     public void use3(IndeksBox indeksBox) {
-
+        setToDestroy = true;
     }
 
 
@@ -69,12 +66,12 @@ public class Coin extends Item {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / MyGdxGame.PPM);
-        fdef.filter.categoryBits = MyGdxGame.COIN_BIT;
+        fdef.filter.categoryBits = MyGdxGame.INDEKS_BIT;
         fdef.filter.maskBits = MyGdxGame.PLAYER_BIT |
                 MyGdxGame.GROUND_BIT |
                 MyGdxGame.BRICK_BIT |
                 MyGdxGame.OBJECT_BIT |
-                MyGdxGame.COIN_BOX_BIT;
+                MyGdxGame.INDEKS_BOX_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
@@ -87,7 +84,7 @@ public class Coin extends Item {
             destroyed = true;
         } else if (!destroyed) {
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-            setRegion(blinkAnimation.getKeyFrame(stateTime, true));
+            //setRegion(blinkAnimation.getKeyFrame(stateTime, true));
         }
     }
 }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.sawek.game.Items.FreeCoin;
+import com.sawek.game.Items.FreeIndeks;
 import com.sawek.game.Items.Item;
 import com.sawek.game.MyGdxGame;
 import com.sawek.game.Screens.PlayScreen;
@@ -18,6 +19,7 @@ import com.sawek.game.Sprites.Brick;
 import com.sawek.game.Sprites.CoinBox;
 import com.sawek.game.Sprites.Crawler;
 import com.sawek.game.Sprites.Enemy;
+import com.sawek.game.Sprites.IndeksBox;
 import com.sawek.game.Sprites.Turtle;
 import com.sawek.game.Sprites.WinWall;
 
@@ -29,6 +31,7 @@ public class B2WorldCreator {
     private Array<Crawler> crawlers;
     private Array<Turtle> turtles;
     private Array<FreeCoin> freeCoins;
+    private Array<FreeIndeks> freeIndekses;
 
     public B2WorldCreator(PlayScreen screen) {
         BodyDef bdef = new BodyDef();
@@ -78,6 +81,11 @@ public class B2WorldCreator {
             new CoinBox(screen, object);
         }
 
+        //Create indeks box body/fixtures
+        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
+            new IndeksBox(screen, object);
+        }
+
         //Create all crawlers
         crawlers = new Array<Crawler>();
         for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
@@ -98,6 +106,13 @@ public class B2WorldCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             freeCoins.add(new FreeCoin(screen, rect.getX() / MyGdxGame.PPM, rect. getY() / MyGdxGame.PPM));
         }
+
+        //Create all free indekses
+        freeIndekses = new Array<FreeIndeks>();
+        for(MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            freeIndekses.add(new FreeIndeks(screen, rect.getX() / MyGdxGame.PPM, rect. getY() / MyGdxGame.PPM));
+        }
     }
 
     public Array<Enemy> getEnemies() {
@@ -110,6 +125,7 @@ public class B2WorldCreator {
     public Array<Item> getItems(){
         Array<Item> items = new Array<Item>();
         items.addAll(freeCoins);
+        items.addAll(freeIndekses);
         return items;
     }
 }

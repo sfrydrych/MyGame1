@@ -17,7 +17,10 @@ import com.sawek.game.MyGdxGame;
  */
 
 public class Hud implements Disposable {
-    private static Integer score;
+    public static Integer indeks;
+    private static Label indeksLabel;
+    private Label indekszLabel;
+    public static Integer score;
     private static Label scoreLabel;
     public Stage stage;
     private Viewport viewport;
@@ -25,16 +28,16 @@ public class Hud implements Disposable {
     private boolean timeUp;
     private float timeCount;
     private Label countdownLabel;
-    private Label timeLabel;
-    private Label levelLabel;
-    private Label worldLabel;
-    private Label playerLabel;
+    private Label timezLabel;
+    private Label scorezLabel;
 
 
     public Hud(SpriteBatch sb) {
+
         worldTimer = 300;
         timeCount = 0;
         score = 0;
+        indeks = 0;
 
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -44,15 +47,19 @@ public class Hud implements Disposable {
         table.setFillParent(true);
 
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        indeksLabel = new Label(String.format("%01d / 3", indeks), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel = new Label("CZAS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerLabel = new Label("PUNKTY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timezLabel = new Label("CZAS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        indekszLabel = new Label("INDEKSY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scorezLabel = new Label("PUNKTY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        table.add(playerLabel).expandX().padTop(10);
-        table.add(timeLabel).expandX().padTop(10);
+        table.add(indekszLabel).expandX().padTop(10);
+        table.add(timezLabel).expandX().padTop(10);
+        table.add(scorezLabel).expandX().padTop(10);
         table.row();
-        table.add(scoreLabel).expandX();
+        table.add(indeksLabel).expandX();
         table.add(countdownLabel).expandX();
+        table.add(scoreLabel).expandX();
 
         stage.addActor(table);
     }
@@ -60,6 +67,11 @@ public class Hud implements Disposable {
     public static void addScore(int value) {
         score += value;
         scoreLabel.setText(String.format("%06d", score));
+    }
+
+    public static void addIndeks(int value) {
+        indeks += value;
+        indeksLabel.setText(String.format("%01d / 3", indeks));
     }
 
     public void update(float dt) {

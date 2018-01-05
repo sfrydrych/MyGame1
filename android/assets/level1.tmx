@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="164">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" nextobjectid="173">
  <tileset firstgid="1" name="tileset_gutter" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="924" columns="33">
   <image source="tileset_gutter.png" width="594" height="504"/>
   <tile id="0">
@@ -118,7 +118,7 @@
  </layer>
  <layer name="Graphic Layer" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztmNtOwzAMhtPdAdsQcNXbXgIbEjCQ9mY8CPAmwOPhiVoyJomdJt0a5k+yVjUHH+Y/XeecYRiGc68z597A3mf5e+Tuk+M712/tOVj8P7TN8LU18gG1+gT7CtSM1jVUW9wjtk8KKf0gxU/3qzUHi1/PtkmP/z9D61qqN7Q+S/mqPQeLXw/qt3QP1UB76AD2yEyw0NycGqWuDcWDY21vx9CiXW8S2yP7/WwYU6dzpl/DqJHOmX4No0a4dnP0OydWO/w9DN+l6OcYnEBtT5XnY8pcLSXyC60Nvae2imvN/ik+kS5wLcG1krIWof8XDKm3T7s5+l2ALcHOB8RCGaMvp4KU2zWM3ZDxy4S5UyWWwyHxadDX/zx+n1a02ilFSLua+H363T1zV8RynsFT6cuUvtOeOVJudPwCPu/BrgLzpb2moBspB4mxcohpkN7j8Ye0EtIPxp/7TKLrY9rl/n319+l32duaXPMcJM5g3hxssWf9bsDXE7HnJt53GzIP0Z45dN6G+aTj6P8hEgfOLRH/UHw5IJocfPuMnQPvd/TJ7/P4Y1rh93n8vD9S48f1knZ9Z88u/kd2BnFQs3fk+kX4Dji3MGcFti6g38bsj5WqjdW5fE3Nfts3b9B2Lw==
+   eJztmEsOgyAQQLG7/g7glmV/9z+eJJXEKgOjokjzXjKpCUyF6TwbNAYAAAAAAAAAltKWXsCOnBIhzV1To7m50nr8WNtHaPzfsH0AQF1Yg78ANWIN/gLUyNhd/P0yPof5s9TwcwvOjTGXJv9cLTn2J+VK59RWca35/jn39FjhOsXYlSXeDN8XLKl3yN0j+LtFXx6F1N4ebuyp3PucuTAl5KCm/0Ou7O2O5O4R/K2xL7XPnNTe8HcfYg7GHJBcSeWu/U8a5sfcLenv1a3v5uJeYV9qXcLf8mgcDHkQcyWVu/a38vkpd0v6+3Lre7v4ZOjLhphErtpQ5/w1JX6jA+qIE8s=
   </data>
  </layer>
  <objectgroup name="Ground">
@@ -151,7 +151,6 @@
   <object id="51" x="2944" y="144" width="16" height="48"/>
   <object id="52" x="2928" y="160" width="16" height="32"/>
   <object id="53" x="2912" y="176" width="16" height="16"/>
-  <object id="54" x="3184" y="176" width="16" height="16"/>
   <object id="159" x="1" y="0" height="192"/>
  </objectgroup>
  <objectgroup name="Pipes">
@@ -171,7 +170,6 @@
     <property name="mushroom" value=""/>
    </properties>
   </object>
-  <object id="72" x="352" y="64" width="16" height="16"/>
   <object id="73" x="368" y="128" width="16" height="16"/>
   <object id="74" x="1264" y="128" width="16" height="16"/>
   <object id="75" x="1520" y="64" width="16" height="16"/>
@@ -183,10 +181,9 @@
    </properties>
   </object>
   <object id="79" x="1808" y="128" width="16" height="16"/>
-  <object id="80" x="2080" y="64" width="16" height="16"/>
   <object id="81" x="2096" y="64" width="16"/>
-  <object id="83" x="2096" y="64" width="16" height="16"/>
   <object id="84" x="2736" y="128" width="16" height="16"/>
+  <object id="171" x="2080" y="64" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="Bricks">
   <object id="85" x="2752" y="128" width="16" height="16"/>
@@ -239,5 +236,13 @@
  <objectgroup name="Free Coin">
   <object id="162" x="304" y="176" width="16" height="16"/>
   <object id="163" x="336" y="176" width="16" height="16"/>
+  <object id="166" x="416" y="128" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Indeks">
+  <object id="167" x="352" y="64" width="16" height="16"/>
+  <object id="172" x="2096" y="64" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Free Indeks">
+  <object id="165" x="144" y="144" width="16" height="16"/>
  </objectgroup>
 </map>

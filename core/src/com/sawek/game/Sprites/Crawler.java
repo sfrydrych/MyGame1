@@ -66,6 +66,7 @@ public class Crawler extends Enemy {
         fdef.filter.categoryBits = MyGdxGame.ENEMY_BIT;
         fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
                 MyGdxGame.COIN_BOX_BIT |
+                MyGdxGame.INDEKS_BOX_BIT |
                 MyGdxGame.BRICK_BIT |
                 MyGdxGame.ENEMY_BIT |
                 MyGdxGame.OBJECT_BIT |
@@ -97,7 +98,7 @@ public class Crawler extends Enemy {
         if (enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL) {
             setToDestroy = true;
             MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
-            Hud.addScore(200);
+            Hud.addScore(250);
         } else
             reverseVelocity(true, false);
     }

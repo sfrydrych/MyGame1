@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sawek.game.Items.Coin;
+import com.sawek.game.Items.Indeks;
 import com.sawek.game.Items.Item;
 import com.sawek.game.Items.ItemDef;
 import com.sawek.game.MyGdxGame;
@@ -50,10 +51,14 @@ public class PlayScreen implements Screen {
     //private Music music;
     private Array<Item> items;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
+    private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
+    //BitmapFont scoreFont;
+    //private Background[] backgrounds;
 
 
     public PlayScreen(MyGdxGame game) {
-        atlas = new TextureAtlas("player_and_enemies.pack");
+        //atlas = new TextureAtlas("player_and_enemies.pack");
+        atlas = new TextureAtlas("player_enemies_items.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(MyGdxGame.V_WIDTH / MyGdxGame.PPM, MyGdxGame.V_HEIGHT / MyGdxGame.PPM, gamecam);
@@ -75,10 +80,26 @@ public class PlayScreen implements Screen {
         //music.play();
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
+        itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();
+        //scoreFont = new BitmapFont(Gdx.files.internal("fonts/score.fnt"));
+
+        // create backgrounds
+        //Texture bgs = MyGdxGame.manager.get("img/bgs.png", Texture.class);
+        //TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
+        //TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
+        //TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
+        //backgrounds = new Background[3];
+        //backgrounds[0] = new Background(sky, gamecam, 0f);
+        //backgrounds[1] = new Background(clouds, gamecam, 0.1f);
+        //backgrounds[2] = new Background(mountains, gamecam, 0.2f);
     }
 
     public void spawnItem(ItemDef idef) {
         itemsToSpawn.add(idef);
+    }
+
+    public void spawnItem2(ItemDef idef) {
+        itemsToSpawn2.add(idef);
     }
 
     public void handleSpawningItems() {
@@ -86,6 +107,15 @@ public class PlayScreen implements Screen {
             ItemDef idef = itemsToSpawn.poll();
             if (idef.type == Coin.class) {
                 items.add(new Coin(this, idef.position.x, idef.position.y));
+            }
+        }
+    }
+
+    public void handleSpawningItems2() {
+        if (!itemsToSpawn2.isEmpty()) {
+            ItemDef idef = itemsToSpawn2.poll();
+            if (idef.type == Indeks.class) {
+                items.add(new Indeks(this, idef.position.x, idef.position.y));
             }
         }
     }
@@ -119,7 +149,8 @@ public class PlayScreen implements Screen {
     public void update(float dt) {
         handleInput(dt);
         handleSpawningItems();
-        world.step(1 / 60f, 6, 2);
+        handleSpawningItems2();
+        world.step(1 / 60f, 3, 2);
         player.update(dt);
         for (Enemy enemy : creator.getEnemies()) {
             enemy.update(dt);
@@ -185,6 +216,13 @@ public class PlayScreen implements Screen {
             game.setScreen(new WinScreen(game));
             dispose();
         }
+
+        // draw bgs
+        //game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        //for(int i = 0; i < backgrounds.length; i++) {
+        //    backgrounds[i].render(game.batch);
+        //}
+
     }
 
     public boolean gameOver() {

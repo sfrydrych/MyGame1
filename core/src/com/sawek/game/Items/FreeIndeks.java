@@ -1,7 +1,6 @@
 package com.sawek.game.Items;
 
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -19,20 +18,20 @@ import com.sawek.game.Sprites.Player;
  * Created by Sławek on 2017-10-08.
  */
 
-public class FreeCoin extends Item {
+public class FreeIndeks extends Item {
     private float stateTime;
-    private Animation<TextureRegion> blinkAnimation;
+    //private Animation<TextureRegion> blinkAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
 
-    public FreeCoin(PlayScreen screen, float x, float y) {
+    public FreeIndeks(PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        //setRegion(screen.getAtlas().findRegion("goomba"), 16, 0, 16, 16);
+        setRegion(screen.getAtlas().findRegion("indeks"), 0, 0, 16, 16);
         frames = new Array<TextureRegion>();
-        for (int i = 0; i < 2; i++)
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("point"), i * 16, 0, 16, 16));
-        blinkAnimation = new Animation<TextureRegion>(0.4f, frames);
+        //for (int i = 0; i < 2; i++)
+            //frames.add(new TextureRegion(screen.getAtlas().findRegion("point"), i * 16, 0, 16, 16));
+        //blinkAnimation = new Animation<TextureRegion>(0.4f, frames);
         stateTime = 0;
         setBounds(getX(), getY(), 16 / MyGdxGame.PPM, 16 / MyGdxGame.PPM);
         setToDestroy = false;
@@ -51,13 +50,7 @@ public class FreeCoin extends Item {
         shape.setRadius(6 / MyGdxGame.PPM);
         fdef.filter.categoryBits = MyGdxGame.COIN_BIT;
         fdef.filter.maskBits = MyGdxGame.PLAYER_BIT;
-        /*fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
-                MyGdxGame.COIN_BOX_BIT |
-                MyGdxGame.BRICK_BIT |
-                MyGdxGame.ENEMY_BIT |
-                MyGdxGame.OBJECT_BIT |
-                MyGdxGame.PLAYER_BIT;
-*/
+
         fdef.shape = shape;
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData(this);
@@ -91,10 +84,11 @@ public class FreeCoin extends Item {
             world.destroyBody(body);
             destroyed = true;
             MyGdxGame.manager.get("audio/sounds/coin.wav", Sound.class).play();
-            Hud.addScore(100);
+            Hud.addScore(500);
+            Hud.addIndeks(1);
         } else if (!destroyed) {
             setPosition(body.getPosition().x - getWidth() / 2, (body.getPosition().y - getHeight() / 2));
-            setRegion(blinkAnimation.getKeyFrame(stateTime, true));
+            //setRegion(blinkAnimation.getKeyFrame(stateTime, true));
         }
     }
 }
