@@ -1,5 +1,6 @@
 package com.sawek.game.Scenes;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -30,9 +31,13 @@ public class Hud implements Disposable {
     private Label countdownLabel;
     private Label timezLabel;
     private Label scorezLabel;
+    BitmapFont polishFont;
 
 
     public Hud(SpriteBatch sb) {
+
+        polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));
+        polishFont.getData().setScale(0.3f,0.3f);
 
         worldTimer = 300;
         timeCount = 0;
@@ -46,12 +51,12 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        indeksLabel = new Label(String.format("%01d / 3", indeks), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timezLabel = new Label("CZAS", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        indekszLabel = new Label("INDEKSY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scorezLabel = new Label("PUNKTY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(polishFont, Color.WHITE));
+        indeksLabel = new Label(String.format("%01d/3", indeks), new Label.LabelStyle(polishFont, Color.WHITE));
+        scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(polishFont, Color.WHITE));
+        timezLabel = new Label("CZAS", new Label.LabelStyle(polishFont, Color.WHITE));
+        indekszLabel = new Label("INDEKSY", new Label.LabelStyle(polishFont, Color.WHITE));
+        scorezLabel = new Label("PUNKTY", new Label.LabelStyle(polishFont, Color.WHITE));
 
         table.add(indekszLabel).expandX().padTop(10);
         table.add(timezLabel).expandX().padTop(10);

@@ -79,7 +79,7 @@ public class GameOverScreen implements Screen {
         polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3);
         polishFont.draw(stage.getBatch(), scoreLayout, stage.getWidth() / 2 - scoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);
         polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height);
-        polishFont.getData().setScale(0.25f,0.25f);
+        polishFont.getData().setScale(0.3f,0.3f);
         stage.getBatch().end();
     }
 

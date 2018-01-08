@@ -54,9 +54,19 @@ public class PlayScreen implements Screen {
     private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
     //BitmapFont scoreFont;
     //private Background[] backgrounds;
-
+    //private Texture bgs;
 
     public PlayScreen(MyGdxGame game) {
+        // create backgrounds
+        //bgs = MyGdxGame.manager.get("img/bgs.png", Texture.class);
+        //TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
+        //TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
+        //TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
+        //backgrounds = new Background[3];
+        //backgrounds[0] = new Background(sky, gamecam, 0f);
+        //backgrounds[1] = new Background(clouds, gamecam, 10f);
+        //backgrounds[2] = new Background(mountains, gamecam, 20f);
+
         //atlas = new TextureAtlas("player_and_enemies.pack");
         atlas = new TextureAtlas("player_enemies_items.pack");
         this.game = game;
@@ -83,15 +93,7 @@ public class PlayScreen implements Screen {
         itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();
         //scoreFont = new BitmapFont(Gdx.files.internal("fonts/score.fnt"));
 
-        // create backgrounds
-        //Texture bgs = MyGdxGame.manager.get("img/bgs.png", Texture.class);
-        //TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
-        //TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
-        //TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
-        //backgrounds = new Background[3];
-        //backgrounds[0] = new Background(sky, gamecam, 0f);
-        //backgrounds[1] = new Background(clouds, gamecam, 0.1f);
-        //backgrounds[2] = new Background(mountains, gamecam, 0.2f);
+
     }
 
     public void spawnItem(ItemDef idef) {
@@ -218,11 +220,10 @@ public class PlayScreen implements Screen {
         }
 
         // draw bgs
-        //game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        //for(int i = 0; i < backgrounds.length; i++) {
-        //    backgrounds[i].render(game.batch);
+         //game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+         //for(int i = 0; i < backgrounds.length; i++) {
+         //backgrounds[i].render(game.batch);
         //}
-
     }
 
     public boolean gameOver() {
