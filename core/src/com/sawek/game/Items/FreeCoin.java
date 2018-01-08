@@ -90,7 +90,7 @@ public class FreeCoin extends Item {
         if (setToDestroy && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
-            MyGdxGame.manager.get("audio/sounds/coin.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/point.wav", Sound.class).play();
             Hud.addScore(100);
         } else if (!destroyed) {
             setPosition(body.getPosition().x - getWidth() / 2, (body.getPosition().y - getHeight() / 2));

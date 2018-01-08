@@ -24,6 +24,6 @@ public class Brick extends InteractiveTileObject {
         setCategoryFilter(MyGdxGame.DESTROYED_BIT);
         getCell().setTile(null);
         Hud.addScore(50);
-        MyGdxGame.manager.get("audio/sounds/breakblock.wav", Sound.class).play();
+        MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
     }
 }

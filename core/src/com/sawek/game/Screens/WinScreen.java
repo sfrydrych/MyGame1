@@ -7,8 +7,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -29,9 +31,11 @@ public class WinScreen implements Screen {
     private Game game;
     private Hud hud;
     int playerscore, highscore, playerindeks;
-    BitmapFont scoreFont;
+    BitmapFont polishFont;
+    private TextureRegion reg;
 
     public WinScreen(Game game) {
+        reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
         this.game = game;
         this.playerscore = score;
         this.playerindeks = indeks;
@@ -47,20 +51,7 @@ public class WinScreen implements Screen {
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((MyGdxGame) game).batch);
 
-        scoreFont = new BitmapFont(Gdx.files.internal("fonts/score.fnt"));
-        /*Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        Table table = new Table();
-        table.center();
-        table.setFillParent(true);
-
-        Label winLabel = new Label("WYGRANA", font);
-        Label playAgainLabel = new Label("Zacznij od nowa", font);
-
-        table.add(winLabel).expandX();
-        table.row();
-        table.add(playAgainLabel).expandX().padTop(10f);
-
-        stage.addActor(table);*/
+        polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));
     }
 
     @Override
@@ -79,13 +70,14 @@ public class WinScreen implements Screen {
         stage.draw();
 
         stage.getBatch().begin();
-        GlyphLayout scoreLayout = new GlyphLayout(scoreFont, "Zdobyte punkty: \n" + playerscore, Color.WHITE, 0, Align.left, false);
-        GlyphLayout highScoreLayout = new GlyphLayout(scoreFont, "Najleszy Wynik: \n" + highscore, Color.WHITE, 0, Align.left, false);
-        GlyphLayout indeksLayout = new GlyphLayout(scoreFont, "Zdobyte indeksy: \n" + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
-        scoreFont.draw(stage.getBatch(), scoreLayout, stage.getWidth() / 2 - scoreLayout.width / 2, stage.getHeight() / 2);
-        scoreFont.draw(stage.getBatch(), highScoreLayout, Gdx.graphics.getWidth() / 2 - highScoreLayout.width / 2, Gdx.graphics.getHeight() / 2 - scoreLayout.height);
-        scoreFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, stage.getHeight() / 2 - scoreLayout.height);
-        scoreFont.getData().setScale(0.5f,0.5f);
+        stage.getBatch().draw(reg, 0, 0);
+        GlyphLayout highScoreLayout = new GlyphLayout(polishFont, "Najleszy Wynik: " + highscore, Color.WHITE, 0, Align.left, false);
+        GlyphLayout scoreLayout = new GlyphLayout(polishFont, "\nZdobyte punkty: " + playerscore, Color.WHITE, 0, Align.left, false);
+        GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nZdobyte indeksy: " + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
+        polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3);
+        polishFont.draw(stage.getBatch(), scoreLayout, stage.getWidth() / 2 - scoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);
+        polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height);
+        polishFont.getData().setScale(0.25f,0.25f);
         stage.getBatch().end();
     }
 

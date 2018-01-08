@@ -83,7 +83,7 @@ public class FreeIndeks extends Item {
         if (setToDestroy && !destroyed) {
             world.destroyBody(body);
             destroyed = true;
-            MyGdxGame.manager.get("audio/sounds/coin.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/indeks.wav", Sound.class).play();
             Hud.addScore(500);
             Hud.addIndeks(1);
         } else if (!destroyed) {

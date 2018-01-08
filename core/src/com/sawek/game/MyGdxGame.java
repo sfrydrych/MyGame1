@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sawek.game.Screens.LevelSelectScreen;
 import com.sawek.game.Screens.MainMenuScreen;
 import com.sawek.game.Screens.PlayScreen;
 import com.sawek.game.Screens.SplashScreen;
@@ -40,6 +41,7 @@ public class MyGdxGame extends Game {
     public SplashScreen splashScreen;
     public SplashScreen2 splashScreen2;
     public MainMenuScreen mainMenuScreen;
+    public LevelSelectScreen levelSelectScreen;
     public PlayScreen playScreen;
 
 
@@ -50,24 +52,25 @@ public class MyGdxGame extends Game {
         batch = new SpriteBatch();
         manager = new AssetManager();
         //manager.load("audio/music/mario_music.ogg", Music.class);
-        manager.load("audio/sounds/coin.wav", Sound.class);
-        manager.load("audio/sounds/bump.wav", Sound.class);
-        manager.load("audio/sounds/breakblock.wav", Sound.class);
-        manager.load("audio/sounds/stomp.wav", Sound.class);
-        manager.load("audio/sounds/mariodie.wav", Sound.class);
+        manager.load("audio/sounds/hit.wav", Sound.class);
+        manager.load("audio/sounds/indeks.wav", Sound.class);
+        manager.load("audio/sounds/playerlose.wav", Sound.class);
+        manager.load("audio/sounds/playerwin.wav", Sound.class);
+        manager.load("audio/sounds/point.wav", Sound.class);
         manager.load("img/libgdx.png", Texture.class);
         manager.load("img/pwsz.png", Texture.class);
         manager.load("img/play_button_active.png", Texture.class);
         manager.load("img/exit_button_active.png", Texture.class);
         manager.load("img/play_button_inactive.png", Texture.class);
         manager.load("img/exit_button_inactive.png", Texture.class);
-        //manager.load("img/bgs.png", Texture.class);
+        manager.load("img/bgs.png", Texture.class);
         manager.finishLoading();
 
         splashScreen = new SplashScreen(this);
         splashScreen2 = new SplashScreen2(this);
         mainMenuScreen = new MainMenuScreen(this);
         playScreen = new PlayScreen(this);
+        levelSelectScreen = new LevelSelectScreen(this);
         //setScreen(new PlayScreen(this));
         this.setScreen(splashScreen);
     }
@@ -80,6 +83,7 @@ public class MyGdxGame extends Game {
         splashScreen.dispose();
         splashScreen2.dispose();
         mainMenuScreen.dispose();
+        levelSelectScreen.dispose();
         playScreen.dispose();
     }
 

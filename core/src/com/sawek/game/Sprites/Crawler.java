@@ -97,7 +97,7 @@ public class Crawler extends Enemy {
     public void onEnemyHit(Enemy enemy) {
         if (enemy instanceof Turtle && ((Turtle) enemy).currentState == Turtle.State.MOVING_SHELL) {
             setToDestroy = true;
-            MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
             Hud.addScore(250);
         } else
             reverseVelocity(true, false);
@@ -106,7 +106,7 @@ public class Crawler extends Enemy {
     @Override
     public void hitOnHead(Player player) {
         setToDestroy = true;
-        MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+        MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
         Hud.addScore(200);
     }
 }

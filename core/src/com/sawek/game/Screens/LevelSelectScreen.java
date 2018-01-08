@@ -15,18 +15,17 @@ import com.sawek.game.MyGdxGame;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 
 /**
- * Created by Sławek on 2017-09-30.
+ * Created by Sławek on 2018-01-08.
  */
 
-public class MainMenuScreen implements Screen {
+public class LevelSelectScreen implements Screen {
 
     private final MyGdxGame app;
     private Stage stage;
     private Image playImg;
-    private Image exitImg;
     private TextureRegion reg;
 
-    public MainMenuScreen(final MyGdxGame app) {
+    public LevelSelectScreen(final MyGdxGame app) {
 
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
         this.app = app;
@@ -49,36 +48,50 @@ public class MainMenuScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
+
         Texture playTex = app.manager.get("img/play_button_inactive.png", Texture.class);
         playImg = new Image(playTex);
-        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - playImg.getHeight() / 16);
+        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 + playImg.getHeight() / 4);
         playImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                app.setScreen(app.levelSelectScreen);
+                app.setScreen(app.playScreen);
             }
         });
         playImg.addAction(scaleTo(.125f, .125f));
         stage.addActor(playImg);
 
-        Texture exitTex = app.manager.get("img/exit_button_inactive.png", Texture.class);
-        exitImg = new Image(exitTex);
-        exitImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - exitImg.getHeight() / 4);
-        exitImg.addListener(new ClickListener(){
+
+        Texture playTex2 = app.manager.get("img/play_button_inactive.png", Texture.class);
+        playImg = new Image(playTex2);
+        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - playImg.getHeight() / 16);
+        playImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                Gdx.app.exit();
+                app.setScreen(app.playScreen);
             }
         });
-        exitImg.addAction(scaleTo(.160f, .160f));
-        stage.addActor(exitImg);
+        playImg.addAction(scaleTo(.125f, .125f));
+        stage.addActor(playImg);
+
+
+        Texture playTex3 = app.manager.get("img/play_button_inactive.png", Texture.class);
+        playImg = new Image(playTex3);
+        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - playImg.getHeight() / 4);
+        playImg.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                app.setScreen(app.playScreen);
+            }
+        });
+        playImg.addAction(scaleTo(.125f, .125f));
+        stage.addActor(playImg);
 
 
         app.batch.setProjectionMatrix(stage.getCamera().combined);
         app.batch.begin();
         app.batch.draw(reg, 0, 0);
         app.batch.end();
-
 
         update(delta);
         stage.draw();

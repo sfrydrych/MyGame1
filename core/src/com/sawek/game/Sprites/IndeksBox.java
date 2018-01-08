@@ -29,11 +29,12 @@ public class IndeksBox extends InteractiveTileObject {
     public void onHeadHit(Player player) {
 
         if (getCell().getTile().getId() == BLANK_COIN) {
-            MyGdxGame.manager.get("audio/sounds/bump.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
             Hud.addScore(0);
         } else {
-            MyGdxGame.manager.get("audio/sounds/coin.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/indeks.wav", Sound.class).play();
             Hud.addScore(250);
+            Hud.addIndeks(1);
             screen.spawnItem2(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 20 / MyGdxGame.PPM), Indeks.class));
         }
         getCell().setTile(tileSet.getTile(BLANK_COIN));

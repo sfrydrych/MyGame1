@@ -150,7 +150,7 @@ public class Player extends Sprite {
 
     public void die() {
         if (!isDead()) {
-            MyGdxGame.manager.get("audio/sounds/mariodie.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/playerlose.wav", Sound.class).play();
             playerIsDead = true;
             Filter filter = new Filter();
             filter.maskBits = MyGdxGame.NOTHING_BIT;
@@ -163,7 +163,7 @@ public class Player extends Sprite {
 
     public void win() {
         if (!isWinner()) {
-            MyGdxGame.manager.get("audio/sounds/bump.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/playerwin.wav", Sound.class).play();
             playerIsWinner = true;
             timeToRedefinePlayer = true;
         }

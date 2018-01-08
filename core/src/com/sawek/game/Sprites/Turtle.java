@@ -140,12 +140,12 @@ public class Turtle extends Enemy {
     public void hitOnHead(Player player) {
         if (currentState != State.STANDING_SHELL) {
             currentState = State.STANDING_SHELL;
-            MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
             Hud.addScore(150);
             velocity.x = 0;
         } else {
             kick(player.getX() <= this.getX() ? KICK_RIGHT_SPEED : KICK_LEFT_SPEED);
-            MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+            MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
             Hud.addScore(50);
         }
     }
@@ -158,7 +158,7 @@ public class Turtle extends Enemy {
     public void kick(int speed) {
         velocity.x = speed;
         currentState = State.MOVING_SHELL;
-        MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+        MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
     }
 
     public State getCurrentState() {
@@ -169,7 +169,7 @@ public class Turtle extends Enemy {
         currentState = State.DEAD;
         Filter filter = new Filter();
         filter.maskBits = new MyGdxGame().NOTHING_BIT;
-        MyGdxGame.manager.get("audio/sounds/stomp.wav", Sound.class).play();
+        MyGdxGame.manager.get("audio/sounds/hit.wav", Sound.class).play();
         Hud.addScore(300);
 
         for (Fixture fixture : b2body.getFixtureList())
