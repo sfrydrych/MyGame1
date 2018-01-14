@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sawek.game.Screens.ExitScreen;
 import com.sawek.game.Screens.LevelSelectScreen;
 import com.sawek.game.Screens.MainMenuScreen;
 import com.sawek.game.Screens.PlayScreen;
@@ -43,6 +44,7 @@ public class MyGdxGame extends Game {
     public MainMenuScreen mainMenuScreen;
     public LevelSelectScreen levelSelectScreen;
     public PlayScreen playScreen;
+    public ExitScreen exitScreen;
 
 
     @Override
@@ -59,18 +61,26 @@ public class MyGdxGame extends Game {
         manager.load("audio/sounds/point.wav", Sound.class);
         manager.load("img/libgdx.png", Texture.class);
         manager.load("img/pwsz.png", Texture.class);
-        manager.load("img/play_button_active.png", Texture.class);
-        manager.load("img/exit_button_active.png", Texture.class);
-        manager.load("img/play_button_inactive.png", Texture.class);
-        manager.load("img/exit_button_inactive.png", Texture.class);
+        manager.load("img/level1.png", Texture.class);
+        manager.load("img/level2.png", Texture.class);
+        manager.load("img/level3.png", Texture.class);
+        manager.load("img/yes.png", Texture.class);
+        manager.load("img/no.png", Texture.class);
+        manager.load("img/retry.png", Texture.class);
+        manager.load("img/next.png", Texture.class);
+        manager.load("img/back.png", Texture.class);
+        manager.load("img/play.png", Texture.class);
+        manager.load("img/exit.png", Texture.class);
         manager.load("img/bgs.png", Texture.class);
         manager.finishLoading();
+
 
         splashScreen = new SplashScreen(this);
         splashScreen2 = new SplashScreen2(this);
         mainMenuScreen = new MainMenuScreen(this);
         playScreen = new PlayScreen(this);
         levelSelectScreen = new LevelSelectScreen(this);
+        exitScreen = new ExitScreen(this);
         //setScreen(new PlayScreen(this));
         this.setScreen(splashScreen);
     }
@@ -83,6 +93,7 @@ public class MyGdxGame extends Game {
         splashScreen.dispose();
         splashScreen2.dispose();
         mainMenuScreen.dispose();
+        exitScreen.dispose();
         levelSelectScreen.dispose();
         playScreen.dispose();
     }

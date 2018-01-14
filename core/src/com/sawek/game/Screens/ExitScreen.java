@@ -2,40 +2,42 @@ package com.sawek.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sawek.game.MyGdxGame;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 
 /**
- * Created by Sławek on 2017-09-30.
+ * Created by Sławek on 2018-01-14.
  */
 
-public class MainMenuScreen implements Screen {
-
-    private final MyGdxGame app;
+public class ExitScreen implements Screen {
     private Stage stage;
-    private Image playImg;
-    private Image exitImg;
+    private final MyGdxGame app;
+    BitmapFont polishFont;
+    private Image noImg, yesImg;
     private TextureRegion reg;
 
-    public MainMenuScreen(final MyGdxGame app) {
-
+    public ExitScreen(final MyGdxGame app) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
         this.app = app;
         this.stage = new Stage(new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, app.camera));
+        polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));
     }
 
     @Override
     public void show() {
-
     }
 
     private void update(float delta) {
@@ -44,45 +46,49 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         Gdx.input.setInputProcessor(stage);
 
-        Texture playTex = app.manager.get("img/play.png", Texture.class);
-        playImg = new Image(playTex);
-        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - playImg.getHeight() / 5);
-        playImg.addListener(new ClickListener(){
+        Texture yesTex = app.manager.get("img/yes.png", Texture.class);
+        yesImg = new Image(yesTex);
+        yesImg.setPosition(stage.getWidth() / 4 + yesImg.getWidth()/32, stage.getHeight() / 4 - yesImg.getHeight() / 8);
+        yesImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                app.setScreen(app.levelSelectScreen);
+                Gdx.app.exit();
             }
         });
-        playImg.addAction(scaleTo(.120f, .120f));
-        stage.addActor(playImg);
+        yesImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(yesImg);
 
-        Texture exitTex = app.manager.get("img/exit.png", Texture.class);
-        exitImg = new Image(exitTex);
-        exitImg.setPosition(stage.getWidth() / 2 - exitImg.getWidth() / 16, stage.getHeight() / 2 - exitImg.getHeight() / 3);
-        exitImg.addListener(new ClickListener(){
+
+        Texture noTex = app.manager.get("img/no.png", Texture.class);
+        noImg = new Image(noTex);
+        noImg.setPosition(stage.getWidth() / 2 + noImg.getWidth()/8, stage.getHeight() / 4 - noImg.getHeight() / 8);
+        noImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                app.setScreen(app.exitScreen);
+                app.setScreen(app.mainMenuScreen);
             }
         });
-        exitImg.addAction(scaleTo(.120f, .120f));
-        stage.addActor(exitImg);
+        noImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(noImg);
 
 
-        app.batch.setProjectionMatrix(stage.getCamera().combined);
-        app.batch.begin();
-        app.batch.draw(reg, 0, 0);
-        app.batch.end();
-
+        stage.getBatch().begin();
+        stage.getBatch().draw(reg, 0, 0);
+        GlyphLayout questionLayout = new GlyphLayout(polishFont, "Czy na pewno chcesz wyjść?", Color.WHITE, 0, Align.left, false);
+        polishFont.draw(stage.getBatch(), questionLayout, stage.getWidth() / 2 - questionLayout.width / 2, 2 * stage.getHeight() / 3 - questionLayout.height);
+        polishFont.getData().setScale(0.4f,0.4f);
+        stage.getBatch().end();
 
         update(delta);
         stage.draw();
     }
+
 
     @Override
     public void resize(int width, int height) {

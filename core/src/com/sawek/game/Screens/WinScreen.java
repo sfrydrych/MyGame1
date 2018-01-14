@@ -11,13 +11,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sawek.game.MyGdxGame;
 import com.sawek.game.Scenes.Hud;
 
+import static com.badlogic.gdx.Gdx.app;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 import static com.sawek.game.Scenes.Hud.indeks;
 import static com.sawek.game.Scenes.Hud.score;
 
@@ -33,6 +38,7 @@ public class WinScreen implements Screen {
     int playerscore, highscore, playerindeks;
     BitmapFont polishFont;
     private TextureRegion reg;
+    private Image backImg, retryImg, nextImg;
 
     public WinScreen(Game game) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
@@ -40,7 +46,7 @@ public class WinScreen implements Screen {
         this.playerscore = score;
         this.playerindeks = indeks;
 
-        Preferences prefs = Gdx.app.getPreferences("mygdxgame");
+        Preferences prefs = app.getPreferences("mygdxgame");
         this.highscore = prefs.getInteger("highscore", 0);
 
         if (playerscore > highscore){
@@ -56,7 +62,10 @@ public class WinScreen implements Screen {
 
     @Override
     public void show() {
+    }
 
+    private void update(float delta) {
+        stage.act(delta);
     }
 
     @Override
@@ -67,7 +76,48 @@ public class WinScreen implements Screen {
         }
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.draw();
+
+
+        Texture backTex = MyGdxGame.manager.get("img/back.png", Texture.class);
+        backImg = new Image(backTex);
+        backImg.setPosition(stage.getWidth() / 4 + backImg.getWidth()/16, stage.getHeight() / 4 - backImg.getHeight() / 8);
+        backImg.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                game.setScreen(new LevelSelectScreen((MyGdxGame) game));
+            }
+        });
+        backImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(backImg);
+
+
+        Texture retryTex = MyGdxGame.manager.get("img/retry.png", Texture.class);
+        retryImg = new Image(retryTex);
+        retryImg.setPosition(stage.getWidth() / 2 + retryImg.getWidth()/4, stage.getHeight() / 4 - retryImg.getHeight() / 8);
+        retryImg.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                game.setScreen(new PlayScreen((MyGdxGame) game));
+            }
+        });
+        retryImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(retryImg);
+
+
+
+        Texture nextTex = MyGdxGame.manager.get("img/next.png", Texture.class);
+        nextImg = new Image(nextTex);
+        nextImg.setPosition(stage.getWidth() / 2 + nextImg.getWidth()/32, stage.getHeight() / 4 - nextImg.getHeight() / 8);
+        nextImg.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                game.setScreen(new PlayScreen((MyGdxGame) game));
+            }
+        });
+        nextImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(nextImg);
+
+
 
         stage.getBatch().begin();
         stage.getBatch().draw(reg, 0, 0);
@@ -79,11 +129,14 @@ public class WinScreen implements Screen {
         polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height);
         polishFont.getData().setScale(0.25f,0.25f);
         stage.getBatch().end();
+
+        update(delta);
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-
+        stage.getViewport().update(width, height, true);
     }
 
     @Override

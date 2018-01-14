@@ -52,7 +52,6 @@ public class PlayScreen implements Screen {
     private Array<Item> items;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
-    //BitmapFont scoreFont;
     //private Background[] backgrounds;
     //private Texture bgs;
 
@@ -67,7 +66,6 @@ public class PlayScreen implements Screen {
         //backgrounds[1] = new Background(clouds, gamecam, 10f);
         //backgrounds[2] = new Background(mountains, gamecam, 20f);
 
-        //atlas = new TextureAtlas("player_and_enemies.pack");
         atlas = new TextureAtlas("player_enemies_items.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
@@ -91,9 +89,6 @@ public class PlayScreen implements Screen {
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
         itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();
-        //scoreFont = new BitmapFont(Gdx.files.internal("fonts/score.fnt"));
-
-
     }
 
     public void spawnItem(ItemDef idef) {

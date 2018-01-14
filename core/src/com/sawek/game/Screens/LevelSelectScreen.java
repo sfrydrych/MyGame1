@@ -22,7 +22,7 @@ public class LevelSelectScreen implements Screen {
 
     private final MyGdxGame app;
     private Stage stage;
-    private Image playImg;
+    private Image lvl1Img, lvl2Img, lvl3Img, backImg;
     private TextureRegion reg;
 
     public LevelSelectScreen(final MyGdxGame app) {
@@ -49,43 +49,56 @@ public class LevelSelectScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
 
-        Texture playTex = app.manager.get("img/play_button_inactive.png", Texture.class);
-        playImg = new Image(playTex);
-        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 + playImg.getHeight() / 4);
-        playImg.addListener(new ClickListener(){
+        Texture lvl1Tex = app.manager.get("img/level1.png", Texture.class);
+        lvl1Img = new Image(lvl1Tex);
+        lvl1Img.setPosition(stage.getWidth() / 2 - lvl1Img.getWidth() / 16 - 2, stage.getHeight() / 2);
+        lvl1Img.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 app.setScreen(app.playScreen);
             }
         });
-        playImg.addAction(scaleTo(.125f, .125f));
-        stage.addActor(playImg);
+        lvl1Img.addAction(scaleTo(.120f, .120f));
+        stage.addActor(lvl1Img);
 
 
-        Texture playTex2 = app.manager.get("img/play_button_inactive.png", Texture.class);
-        playImg = new Image(playTex2);
-        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - playImg.getHeight() / 16);
-        playImg.addListener(new ClickListener(){
+        Texture lvl2Tex = app.manager.get("img/level2.png", Texture.class);
+        lvl2Img = new Image(lvl2Tex);
+        lvl2Img.setPosition(stage.getWidth() / 2 - lvl2Img.getWidth() / 16 + 1, stage.getHeight() / 2 - lvl1Img.getHeight() / 8);
+        lvl2Img.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 app.setScreen(app.playScreen);
             }
         });
-        playImg.addAction(scaleTo(.125f, .125f));
-        stage.addActor(playImg);
+        lvl2Img.addAction(scaleTo(.120f, .120f));
+        stage.addActor(lvl2Img);
 
 
-        Texture playTex3 = app.manager.get("img/play_button_inactive.png", Texture.class);
-        playImg = new Image(playTex3);
-        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - playImg.getHeight() / 4);
-        playImg.addListener(new ClickListener(){
+        Texture lvl3Tex = app.manager.get("img/level3.png", Texture.class);
+        lvl3Img = new Image(lvl3Tex);
+        lvl3Img.setPosition(stage.getWidth() / 2 - lvl3Img.getWidth() / 16, stage.getHeight() / 2 - lvl1Img.getHeight() / 4);
+        lvl3Img.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 app.setScreen(app.playScreen);
             }
         });
-        playImg.addAction(scaleTo(.125f, .125f));
-        stage.addActor(playImg);
+        lvl3Img.addAction(scaleTo(.120f, .120f));
+        stage.addActor(lvl3Img);
+
+
+        Texture backTex = app.manager.get("img/back.png", Texture.class);
+        backImg = new Image(backTex);
+        backImg.setPosition(stage.getWidth() / 4 + backImg.getWidth()/16, stage.getHeight() / 4 - backImg.getHeight() / 8);
+        backImg.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                app.setScreen(app.mainMenuScreen);
+            }
+        });
+        backImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(backImg);
 
 
         app.batch.setProjectionMatrix(stage.getCamera().combined);
