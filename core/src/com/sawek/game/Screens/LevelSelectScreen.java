@@ -55,7 +55,7 @@ public class LevelSelectScreen implements Screen {
         lvl1Img.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                app.setScreen(app.playScreen);
+                app.setScreen(new PlayScreen((MyGdxGame) app));
             }
         });
         lvl1Img.addAction(scaleTo(.120f, .120f));
@@ -68,7 +68,7 @@ public class LevelSelectScreen implements Screen {
         lvl2Img.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                app.setScreen(app.playScreen);
+                app.setScreen(new PlayScreen((MyGdxGame) app));
             }
         });
         lvl2Img.addAction(scaleTo(.120f, .120f));
@@ -81,7 +81,7 @@ public class LevelSelectScreen implements Screen {
         lvl3Img.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                app.setScreen(app.playScreen);
+                app.setScreen(new PlayScreen((MyGdxGame) app));
             }
         });
         lvl3Img.addAction(scaleTo(.120f, .120f));

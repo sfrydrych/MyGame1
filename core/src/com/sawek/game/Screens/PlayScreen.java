@@ -52,30 +52,21 @@ public class PlayScreen implements Screen {
     private Array<Item> items;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
-    //private Background[] backgrounds;
-    //private Texture bgs;
 
     public PlayScreen(MyGdxGame game) {
-        // create backgrounds
-        //bgs = MyGdxGame.manager.get("img/bgs.png", Texture.class);
-        //TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
-        //TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
-        //TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
-        //backgrounds = new Background[3];
-        //backgrounds[0] = new Background(sky, gamecam, 0f);
-        //backgrounds[1] = new Background(clouds, gamecam, 10f);
-        //backgrounds[2] = new Background(mountains, gamecam, 20f);
 
         atlas = new TextureAtlas("player_enemies_items.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(MyGdxGame.V_WIDTH / MyGdxGame.PPM, MyGdxGame.V_HEIGHT / MyGdxGame.PPM, gamecam);
+        gamePort = new FitViewport(MyGdxGame.V_WIDTH / MyGdxGame.PPM,
+                MyGdxGame.V_HEIGHT / MyGdxGame.PPM, gamecam);
         hud = new Hud(game.batch);
 
         maploader = new TmxMapLoader();
         map = maploader.load("level1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / MyGdxGame.PPM);
-        gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+        gamecam.position.set(gamePort.getWorldWidth() / 2,
+                gamePort.getWorldHeight() / 2, 0);
 
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
@@ -175,14 +166,11 @@ public class PlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        //Separate game logic from render
         update(delta);
-        //Clear game scene with black
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //Render game map
+
         renderer.render();
-        //Render Box2DDebugLines
         if(debug) {
             b2dr.render(world, gamecam.combined);
         }
@@ -200,7 +188,6 @@ public class PlayScreen implements Screen {
             item.draw(game.batch);
         }
         game.batch.end();
-        //Set batch to now draw what the Hud camera sees
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
@@ -213,12 +200,6 @@ public class PlayScreen implements Screen {
             game.setScreen(new WinScreen(game));
             dispose();
         }
-
-        // draw bgs
-         //game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-         //for(int i = 0; i < backgrounds.length; i++) {
-         //backgrounds[i].render(game.batch);
-        //}
     }
 
     public boolean gameOver() {

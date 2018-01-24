@@ -44,7 +44,8 @@ public class Hud implements Disposable {
         score = 0;
         indeks = 0;
 
-        viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
+        viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT,
+                new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
         Table table = new Table();

@@ -40,7 +40,6 @@ public class GameOverScreen implements Screen {
     BitmapFont polishFont;
     private TextureRegion reg;
     private Image backImg, retryImg;
-    private int bbg;
 
     public GameOverScreen(Game game) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
@@ -71,24 +70,10 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if (Gdx.input.justTouched()) {
-            game.setScreen(new PlayScreen((MyGdxGame) game));
-            dispose();
-        }
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        stage.getBatch().begin();
-        stage.getBatch().draw(reg, 0, 0);
-        GlyphLayout highScoreLayout = new GlyphLayout(polishFont, "Najleszy Wynik: " + highscore, Color.WHITE, 0, Align.left, false);
-        GlyphLayout scoreLayout = new GlyphLayout(polishFont, "\nZdobyte punkty: " + playerscore, Color.WHITE, 0, Align.left, false);
-        GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nZdobyte indeksy: " + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
-        polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3);
-        polishFont.draw(stage.getBatch(), scoreLayout, stage.getWidth() / 2 - scoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);
-        polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height);
-        polishFont.getData().setScale(0.3f,0.3f);
-        stage.getBatch().end();
-
+        Gdx.input.setInputProcessor(stage);
 
         Texture backTex = MyGdxGame.manager.get("img/back.png", Texture.class);
         backImg = new Image(backTex);
@@ -96,7 +81,7 @@ public class GameOverScreen implements Screen {
         backImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new MainMenuScreen((MyGdxGame) game));
+                game.setScreen(new LevelSelectScreen((MyGdxGame) game));
                 dispose();
             }
         });
@@ -111,10 +96,23 @@ public class GameOverScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new PlayScreen((MyGdxGame) game));
+                dispose();
             }
         });
         retryImg.addAction(scaleTo(.120f, .120f));
         stage.addActor(retryImg);
+
+
+        stage.getBatch().begin();
+        stage.getBatch().draw(reg, 0, 0);
+        GlyphLayout highScoreLayout = new GlyphLayout(polishFont, "Najleszy Wynik: " + highscore, Color.WHITE, 0, Align.left, false);
+        GlyphLayout scoreLayout = new GlyphLayout(polishFont, "\nZdobyte punkty: " + playerscore, Color.WHITE, 0, Align.left, false);
+        GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nZdobyte indeksy: " + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
+        polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3);
+        polishFont.draw(stage.getBatch(), scoreLayout, stage.getWidth() / 2 - scoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);
+        polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height);
+        polishFont.getData().setScale(0.3f,0.3f);
+        stage.getBatch().end();
 
         update(delta);
         stage.draw();

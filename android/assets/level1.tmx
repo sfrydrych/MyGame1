@@ -111,14 +111,17 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="925" name="bgs" tilewidth="16" tileheight="16" tilecount="900" columns="20">
+  <image source="bgs.png" width="320" height="720"/>
+ </tileset>
  <layer name="Background Color" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAC+BjDAAAE=
+   eJzt0lERQEAABcAzVBBCCCGEEEKI60CECyHEhdCBbw3ezH5sg21jKQ2IdAOxOhDrAWINE5BqBmItQKwViLUBsXYg1sHfCSnqdxbIdAGxXglETIs=
   </data>
  </layer>
  <layer name="Graphic Layer" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt2EEOgjAQheGpO7xBt13q/e+HCxvRdpgpLaDx/5KJJO0IlLxIFQEAAAAAAFvFsy/gQBejtLk9a9Taq11PHovPqo0DAAAAAMp9WN5LLT/3MAWRaxg/12vE/Wm92j41Oo49399yziwpx5bU0Zst/y9gf/4brMzdHmN3ZyZb5qJUy6Anh0m29+I7eX8LrcyR32OsZXAth0mZZ/X2vivt8a6FF2+WyO/5PBms5fBzvKW391n927MOVFGj1oZ1Hr+m1HvN2FUMfg==
+   eJzt2E0OwiAQhmHqrt6ALUu9rjfxgrooaSNMZyjQn/g+ycQmMFjbfLHUOQAAAAAAsJU/+gR2dFNKmltzjUp7pfOJY36q3DgAAAAAIN2Hxb3U8rOHcXDuPrSfa9Xi90m90j7VG44t65d8ZxSEY02o6I2W7wvYn1+DlrnHd+xpzGTJXKRyGbTkMLjtvTgn63+hljnyu4+1DK7lMAjztN7aZ6Uez1qYWbNEfo9nyWAuh7/jJb219+rf7vWLSuo9Vat1Wqx19eI69KkPRU+XLg==
   </data>
  </layer>
  <objectgroup name="Ground">

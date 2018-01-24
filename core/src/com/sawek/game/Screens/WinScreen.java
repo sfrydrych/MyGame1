@@ -70,12 +70,13 @@ public class WinScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if (Gdx.input.justTouched()) {
+        /*if (Gdx.input.justTouched()) {
             game.setScreen(new PlayScreen((MyGdxGame) game));
             dispose();
-        }
+        }*/
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.input.setInputProcessor(stage);
 
 
         Texture backTex = MyGdxGame.manager.get("img/back.png", Texture.class);
@@ -85,6 +86,7 @@ public class WinScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new LevelSelectScreen((MyGdxGame) game));
+                dispose();
             }
         });
         backImg.addAction(scaleTo(.120f, .120f));
@@ -98,6 +100,7 @@ public class WinScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new PlayScreen((MyGdxGame) game));
+                dispose();
             }
         });
         retryImg.addAction(scaleTo(.120f, .120f));
@@ -112,6 +115,7 @@ public class WinScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new PlayScreen((MyGdxGame) game));
+                dispose();
             }
         });
         nextImg.addAction(scaleTo(.120f, .120f));

@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sawek.game.MyGdxGame;
@@ -25,12 +27,16 @@ public class MainMenuScreen implements Screen {
     private Image playImg;
     private Image exitImg;
     private TextureRegion reg;
+    BitmapFont polishFont;
+    private TextButton exitButton;
+    private TextButton.TextButtonStyle exitButtonStyle;
 
     public MainMenuScreen(final MyGdxGame app) {
 
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
         this.app = app;
         this.stage = new Stage(new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, app.camera));
+        polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));
     }
 
     @Override
@@ -73,12 +79,24 @@ public class MainMenuScreen implements Screen {
         exitImg.addAction(scaleTo(.120f, .120f));
         stage.addActor(exitImg);
 
+        /*exitButtonStyle = new TextButton.TextButtonStyle();
+        exitButtonStyle.font = polishFont;
+        exitButton = new TextButton("Wyjście", exitButtonStyle);
+        exitButton.setPosition(stage.getWidth() / 2 - exitButton.getWidth() / 16, stage.getHeight() / 2 - exitButton.getHeight() / 3);
+        exitButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                app.setScreen(app.exitScreen);
+            }
+        });
+        exitButton.setTransform(true);
+        exitButton.setScale(0.6f,0.6f);
+        stage.addActor(exitButton);*/
 
         app.batch.setProjectionMatrix(stage.getCamera().combined);
         app.batch.begin();
         app.batch.draw(reg, 0, 0);
         app.batch.end();
-
 
         update(delta);
         stage.draw();
