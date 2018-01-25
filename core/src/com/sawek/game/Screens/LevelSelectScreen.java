@@ -55,7 +55,7 @@ public class LevelSelectScreen implements Screen {
         lvl1Img.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                app.setScreen(new PlayScreen((MyGdxGame) app));
+                app.setScreen(new StartScreen((MyGdxGame) app));
             }
         });
         lvl1Img.addAction(scaleTo(.120f, .120f));
@@ -90,7 +90,7 @@ public class LevelSelectScreen implements Screen {
 
         Texture backTex = app.manager.get("img/back.png", Texture.class);
         backImg = new Image(backTex);
-        backImg.setPosition(stage.getWidth() / 4 + backImg.getWidth()/16, stage.getHeight() / 4 - backImg.getHeight() / 8);
+        backImg.setPosition(stage.getWidth() / 4 + backImg.getWidth() / 16, stage.getHeight() / 4 - backImg.getHeight() / 8);
         backImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){

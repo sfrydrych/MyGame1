@@ -114,9 +114,12 @@
  <tileset firstgid="925" name="bgs" tilewidth="16" tileheight="16" tilecount="900" columns="20">
   <image source="bgs.png" width="320" height="720"/>
  </tileset>
+ <tileset firstgid="1825" source="z2.tsx"/>
+ <tileset firstgid="6632" source="z1.tsx"/>
+ <tileset firstgid="27132" source="z3.tsx"/>
  <layer name="Background Color" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt0lERQEAABcAzVBBCCCGEEEKI60CECyHEhdCBbw3ezH5sg21jKQ2IdAOxOhDrAWINE5BqBmItQKwViLUBsXYg1sHfCSnqdxbIdAGxXglETIs=
+   eJzt0mENQEAABtAzKgghhBAXQgghdCDChRBCCB0IYbZvez9eg9f6UhoQ6QRiXUCsG4jVDUCqEYg1AbFmIFYFYi1ArJU/7fCl7X0FZDqAWA8ydD4r
   </data>
  </layer>
  <layer name="Graphic Layer" width="240" height="13">

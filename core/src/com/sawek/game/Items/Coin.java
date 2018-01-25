@@ -26,7 +26,6 @@ public class Coin extends Item {
 
     public Coin(PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        //setRegion(screen.getAtlas().findRegion("goomba"), 16, 0, 16, 16);
         frames = new Array<TextureRegion>();
         for (int i = 0; i < 2; i++)
             frames.add(new TextureRegion(screen.getAtlas().findRegion("point"), i * 16, 0, 16, 16));

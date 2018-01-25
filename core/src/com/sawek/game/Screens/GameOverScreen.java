@@ -39,7 +39,7 @@ public class GameOverScreen implements Screen {
     int playerscore, highscore, playerindeks;
     BitmapFont polishFont;
     private TextureRegion reg;
-    private Image backImg, retryImg;
+    private Image backImg, retryImg, loseImg;
 
     public GameOverScreen(Game game) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
@@ -75,9 +75,17 @@ public class GameOverScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
 
+
+        Texture loseTex = MyGdxGame.manager.get("img/lose.png", Texture.class);
+        loseImg = new Image(loseTex);
+        loseImg.setPosition(stage.getWidth() / 2 - loseImg.getWidth() / 10, stage.getHeight()  - loseImg.getHeight() / 3);
+        loseImg.addAction(scaleTo(.2f, .2f));
+        stage.addActor(loseImg);
+
+
         Texture backTex = MyGdxGame.manager.get("img/back.png", Texture.class);
         backImg = new Image(backTex);
-        backImg.setPosition(stage.getWidth() / 8 + backImg.getWidth()/64, stage.getHeight() / 4 - backImg.getHeight() / 8);
+        backImg.setPosition(stage.getWidth() / 8 + backImg.getWidth() / 64, stage.getHeight() / 4 - backImg.getHeight() / 8);
         backImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -91,7 +99,7 @@ public class GameOverScreen implements Screen {
 
         Texture retryTex = MyGdxGame.manager.get("img/retry.png", Texture.class);
         retryImg = new Image(retryTex);
-        retryImg.setPosition(stage.getWidth() / 2 + retryImg.getWidth()/32, stage.getHeight() / 4 - retryImg.getHeight() / 8);
+        retryImg.setPosition(stage.getWidth() / 2 + retryImg.getWidth() / 32, stage.getHeight() / 4 - retryImg.getHeight() / 8);
         retryImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -108,9 +116,9 @@ public class GameOverScreen implements Screen {
         GlyphLayout highScoreLayout = new GlyphLayout(polishFont, "Najleszy Wynik: " + highscore, Color.WHITE, 0, Align.left, false);
         GlyphLayout scoreLayout = new GlyphLayout(polishFont, "\nZdobyte punkty: " + playerscore, Color.WHITE, 0, Align.left, false);
         GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nZdobyte indeksy: " + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
-        polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3);
+        polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height / 2);
         polishFont.draw(stage.getBatch(), scoreLayout, stage.getWidth() / 2 - scoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);
-        polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height);
+        polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height / 2);
         polishFont.getData().setScale(0.3f,0.3f);
         stage.getBatch().end();
 

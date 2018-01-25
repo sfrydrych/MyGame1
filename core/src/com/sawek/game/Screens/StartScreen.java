@@ -24,35 +24,30 @@ import com.sawek.game.Scenes.Hud;
 import static com.badlogic.gdx.Gdx.app;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 import static com.sawek.game.Scenes.Hud.indeks;
-import static com.sawek.game.Scenes.Hud.score;
+import static com.sawek.game.Scenes.Hud.timer;
 
 /**
- * Created by Sławek on 2017-09-22.
+ * Created by Sławek on 2018-01-25.
  */
 
-public class WinScreen implements Screen {
+public class StartScreen implements Screen {
     private Viewport viewport;
     private Stage stage;
     private Game game;
     private Hud hud;
-    int playerscore, highscore, playerindeks;
+    int playertimer, highscore, playerindeks;
     BitmapFont polishFont;
     private TextureRegion reg;
-    private Image backImg, retryImg, nextImg, winImg;
+    private Image backImg, nextImg, lvl1Img;
 
-    public WinScreen(Game game) {
+    public StartScreen(Game game) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
         this.game = game;
-        this.playerscore = score;
+        this.playertimer = timer;
         this.playerindeks = indeks;
 
         Preferences prefs = app.getPreferences("mygdxgame");
         this.highscore = prefs.getInteger("highscore", 0);
-
-        if (playerscore > highscore){
-            prefs.putInteger("highscore", playerscore);
-            prefs.flush();
-        }
 
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((MyGdxGame) game).batch);
@@ -75,16 +70,17 @@ public class WinScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
 
-        Texture winTex = MyGdxGame.manager.get("img/win.png", Texture.class);
-        winImg = new Image(winTex);
-        winImg.setPosition(stage.getWidth() / 2 - winImg.getWidth() / 10, stage.getHeight()  - winImg.getHeight() / 3);
-        winImg.addAction(scaleTo(.2f, .2f));
-        stage.addActor(winImg);
+        Texture lvl1Tex = MyGdxGame.manager.get("img/level1.png", Texture.class);
+        lvl1Img = new Image(lvl1Tex);
+        lvl1Img.setPosition(stage.getWidth() / 2 - lvl1Img.getWidth() / 10, stage.getHeight()  - lvl1Img.getHeight() / 3);
+        lvl1Img.addAction(scaleTo(.2f, .2f));
+        stage.addActor(lvl1Img);
+
 
 
         Texture backTex = MyGdxGame.manager.get("img/back.png", Texture.class);
         backImg = new Image(backTex);
-        backImg.setPosition(stage.getWidth() / 16 + backImg.getWidth() / 80, stage.getHeight() / 4 - backImg.getHeight() / 8);
+        backImg.setPosition(stage.getWidth() / 8 + backImg.getWidth() / 32, stage.getHeight() / 4 - backImg.getHeight() / 8);
         backImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -96,24 +92,9 @@ public class WinScreen implements Screen {
         stage.addActor(backImg);
 
 
-        Texture retryTex = MyGdxGame.manager.get("img/retry.png", Texture.class);
-        retryImg = new Image(retryTex);
-        retryImg.setPosition(stage.getWidth() / 3 + retryImg.getWidth() / 48, stage.getHeight() / 4 - retryImg.getHeight() / 8);
-        retryImg.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new PlayScreen((MyGdxGame) game));
-                dispose();
-            }
-        });
-        retryImg.addAction(scaleTo(.120f, .120f));
-        stage.addActor(retryImg);
-
-
-
-        Texture nextTex = MyGdxGame.manager.get("img/next.png", Texture.class);
+        Texture nextTex = MyGdxGame.manager.get("img/continue.png", Texture.class);
         nextImg = new Image(nextTex);
-        nextImg.setPosition(stage.getWidth() / 2 + nextImg.getWidth() / 8, stage.getHeight() / 4 - nextImg.getHeight() / 6);
+        nextImg.setPosition(stage.getWidth() / 2 + nextImg.getWidth() / 12, stage.getHeight() / 4 - nextImg.getHeight() / 6);
         nextImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -129,12 +110,12 @@ public class WinScreen implements Screen {
         stage.getBatch().begin();
         stage.getBatch().draw(reg, 0, 0);
         GlyphLayout highScoreLayout = new GlyphLayout(polishFont, "Najleszy Wynik: " + highscore, Color.WHITE, 0, Align.left, false);
-        GlyphLayout scoreLayout = new GlyphLayout(polishFont, "\nZdobyte punkty: " + playerscore, Color.WHITE, 0, Align.left, false);
-        GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nZdobyte indeksy: " + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
+        GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nIndeksy do zdobycia: " + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
+        GlyphLayout timerLayout = new GlyphLayout(polishFont, "\nCzas poziomu: " + playertimer, Color.WHITE, 0, Align.left, false);
         polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height / 2);
-        polishFont.draw(stage.getBatch(), scoreLayout, stage.getWidth() / 2 - scoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);
-        polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - scoreLayout.height - highScoreLayout.height / 2);
-        polishFont.getData().setScale(0.3f,0.3f);
+        polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);
+        polishFont.draw(stage.getBatch(), timerLayout, stage.getWidth() / 2 - timerLayout.width / 2, 2 * stage.getHeight() / 3 - indeksLayout.height - highScoreLayout.height / 2);
+        polishFont.getData().setScale(0.32f,0.32f);
         stage.getBatch().end();
 
         update(delta);

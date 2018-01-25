@@ -84,7 +84,6 @@ public class Indeks extends Item {
             destroyed = true;
         } else if (!destroyed) {
             setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-            //setRegion(blinkAnimation.getKeyFrame(stateTime, true));
         }
     }
 }

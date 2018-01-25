@@ -26,6 +26,7 @@ public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
     private Integer worldTimer;
+    public static Integer timer;
     private boolean timeUp;
     private float timeCount;
     private Label countdownLabel;
@@ -43,9 +44,9 @@ public class Hud implements Disposable {
         timeCount = 0;
         score = 0;
         indeks = 0;
+        timer = worldTimer;
 
-        viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT,
-                new OrthographicCamera());
+        viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
         Table table = new Table();

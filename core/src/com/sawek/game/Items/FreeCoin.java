@@ -28,7 +28,6 @@ public class FreeCoin extends Item {
 
     public FreeCoin(PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        //setRegion(screen.getAtlas().findRegion("goomba"), 16, 0, 16, 16);
         frames = new Array<TextureRegion>();
         for (int i = 0; i < 2; i++)
             frames.add(new TextureRegion(screen.getAtlas().findRegion("point"), i * 16, 0, 16, 16));
@@ -51,13 +50,6 @@ public class FreeCoin extends Item {
         shape.setRadius(6 / MyGdxGame.PPM);
         fdef.filter.categoryBits = MyGdxGame.COIN_BIT;
         fdef.filter.maskBits = MyGdxGame.PLAYER_BIT;
-        /*fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
-                MyGdxGame.COIN_BOX_BIT |
-                MyGdxGame.BRICK_BIT |
-                MyGdxGame.ENEMY_BIT |
-                MyGdxGame.OBJECT_BIT |
-                MyGdxGame.PLAYER_BIT;
-*/
         fdef.shape = shape;
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData(this);

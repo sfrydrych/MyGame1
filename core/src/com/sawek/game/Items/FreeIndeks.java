@@ -20,7 +20,6 @@ import com.sawek.game.Sprites.Player;
 
 public class FreeIndeks extends Item {
     private float stateTime;
-    //private Animation<TextureRegion> blinkAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
@@ -29,9 +28,6 @@ public class FreeIndeks extends Item {
         super(screen, x, y);
         setRegion(screen.getAtlas().findRegion("indeks"), 0, 0, 16, 16);
         frames = new Array<TextureRegion>();
-        //for (int i = 0; i < 2; i++)
-            //frames.add(new TextureRegion(screen.getAtlas().findRegion("point"), i * 16, 0, 16, 16));
-        //blinkAnimation = new Animation<TextureRegion>(0.4f, frames);
         stateTime = 0;
         setBounds(getX(), getY(), 16 / MyGdxGame.PPM, 16 / MyGdxGame.PPM);
         setToDestroy = false;
@@ -88,7 +84,6 @@ public class FreeIndeks extends Item {
             Hud.addIndeks(1);
         } else if (!destroyed) {
             setPosition(body.getPosition().x - getWidth() / 2, (body.getPosition().y - getHeight() / 2));
-            //setRegion(blinkAnimation.getKeyFrame(stateTime, true));
         }
     }
 }

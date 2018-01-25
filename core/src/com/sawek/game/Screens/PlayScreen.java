@@ -58,25 +58,19 @@ public class PlayScreen implements Screen {
         atlas = new TextureAtlas("player_enemies_items.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(MyGdxGame.V_WIDTH / MyGdxGame.PPM,
-                MyGdxGame.V_HEIGHT / MyGdxGame.PPM, gamecam);
+        gamePort = new FitViewport(MyGdxGame.V_WIDTH / MyGdxGame.PPM, MyGdxGame.V_HEIGHT / MyGdxGame.PPM, gamecam);
         hud = new Hud(game.batch);
 
         maploader = new TmxMapLoader();
         map = maploader.load("level1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / MyGdxGame.PPM);
-        gamecam.position.set(gamePort.getWorldWidth() / 2,
-                gamePort.getWorldHeight() / 2, 0);
+        gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
         creator = new B2WorldCreator(this);
         player = new Player(this);
         world.setContactListener(new WorldContactListener());
-        //music = MyGdxGame.manager.get("audio/music/mario_music.ogg", Music.class);
-        //music.setLooping(true);
-        //music.setVolume(1f);
-        //music.play();
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
         itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();

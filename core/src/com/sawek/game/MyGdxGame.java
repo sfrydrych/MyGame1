@@ -14,6 +14,7 @@ import com.sawek.game.Screens.MainMenuScreen;
 import com.sawek.game.Screens.PlayScreen;
 import com.sawek.game.Screens.SplashScreen;
 import com.sawek.game.Screens.SplashScreen2;
+import com.sawek.game.Screens.StartScreen;
 
 public class MyGdxGame extends Game {
     public static final int V_WIDTH = 400;
@@ -45,6 +46,7 @@ public class MyGdxGame extends Game {
     public LevelSelectScreen levelSelectScreen;
     public PlayScreen playScreen;
     public ExitScreen exitScreen;
+    public StartScreen startScreen;
 
 
     @Override
@@ -53,7 +55,6 @@ public class MyGdxGame extends Game {
         camera.setToOrtho(false, V_WIDTH, V_HEIGHT);
         batch = new SpriteBatch();
         manager = new AssetManager();
-        //manager.load("audio/music/mario_music.ogg", Music.class);
         manager.load("audio/sounds/hit.wav", Sound.class);
         manager.load("audio/sounds/indeks.wav", Sound.class);
         manager.load("audio/sounds/playerlose.wav", Sound.class);
@@ -72,6 +73,10 @@ public class MyGdxGame extends Game {
         manager.load("img/play.png", Texture.class);
         manager.load("img/exit.png", Texture.class);
         manager.load("img/bgs.png", Texture.class);
+        manager.load("img/about.png", Texture.class);
+        manager.load("img/continue.png", Texture.class);
+        manager.load("img/win.png", Texture.class);
+        manager.load("img/lose.png", Texture.class);
         manager.finishLoading();
 
 
@@ -81,6 +86,7 @@ public class MyGdxGame extends Game {
         playScreen = new PlayScreen(this);
         levelSelectScreen = new LevelSelectScreen(this);
         exitScreen = new ExitScreen(this);
+        startScreen = new StartScreen(this);
         //setScreen(new PlayScreen(this));
         this.setScreen(splashScreen);
     }
@@ -96,6 +102,7 @@ public class MyGdxGame extends Game {
         exitScreen.dispose();
         levelSelectScreen.dispose();
         playScreen.dispose();
+        startScreen.dispose();
     }
 
     @Override
