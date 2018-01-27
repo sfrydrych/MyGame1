@@ -119,7 +119,7 @@
  <tileset firstgid="27132" source="z3.tsx"/>
  <layer name="Background Color" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt0mENQEAABtAzKgghhBAXQgghdCDChRBCCB0IYbZvez9eg9f6UhoQ6QRiXUCsG4jVDUCqEYg1AbFmIFYFYi1ArJU/7fCl7X0FZDqAWA8ydD4r
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAC+BjDAAAE=
   </data>
  </layer>
  <layer name="Graphic Layer" width="240" height="13">

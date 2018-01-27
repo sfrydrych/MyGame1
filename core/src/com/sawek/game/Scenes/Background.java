@@ -11,7 +11,7 @@ import com.sawek.game.MyGdxGame;
 
 public class Background {
     private TextureRegion image;
-    private OrthographicCamera gameCam;
+    private OrthographicCamera gamecam;
     private float scale;
 
     private float x;
@@ -22,11 +22,11 @@ public class Background {
     private float dx;
     private float dy;
 
-    public Background(TextureRegion image, OrthographicCamera gameCam, float scale) {
+    public Background(TextureRegion image, OrthographicCamera gamecam, float scale) {
         this.image = image;
-        this.gameCam = gameCam;
+        this.gamecam = gamecam;
         this.scale = scale;
-        numDrawX = MyGdxGame.V_WIDTH / image.getRegionWidth() + 1;
+        numDrawX = MyGdxGame.V_WIDTH / image.getRegionWidth() + 2;
         numDrawY = MyGdxGame.V_HEIGHT / image.getRegionHeight() + 1;
     }
 
@@ -42,8 +42,8 @@ public class Background {
 
     public void render(SpriteBatch sb) {
 
-        float x = ((this.x + gameCam.viewportWidth / 2 - gameCam.position.x) * scale) % image.getRegionWidth();
-        float y = ((this.y + gameCam.viewportHeight / 2 - gameCam.position.y) * scale) % image.getRegionHeight();
+        float x = ((this.x + gamecam.viewportWidth / 2 - gamecam.position.x) * scale) % image.getRegionWidth();
+        float y = ((this.y + gamecam.viewportHeight / 2 - gamecam.position.y) * scale) % image.getRegionHeight();
 
         sb.begin();
 

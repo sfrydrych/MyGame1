@@ -5,7 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -20,6 +22,7 @@ import com.sawek.game.Items.Indeks;
 import com.sawek.game.Items.Item;
 import com.sawek.game.Items.ItemDef;
 import com.sawek.game.MyGdxGame;
+import com.sawek.game.Scenes.Background;
 import com.sawek.game.Scenes.Hud;
 import com.sawek.game.Sprites.Enemy;
 import com.sawek.game.Sprites.Player;
@@ -53,6 +56,9 @@ public class PlayScreen implements Screen {
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
 
+    private Background[] backgrounds;
+
+
     public PlayScreen(MyGdxGame game) {
 
         atlas = new TextureAtlas("player_enemies_items.pack");
@@ -74,6 +80,15 @@ public class PlayScreen implements Screen {
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
         itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();
+
+        Texture bgs = MyGdxGame.manager.get("img/bgs.png", Texture.class);
+        TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
+        TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
+        TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
+        backgrounds = new Background[3];
+        backgrounds[0] = new Background(sky, gamecam, 0f);
+        backgrounds[1] = new Background(clouds, gamecam, 10f);
+        backgrounds[2] = new Background(mountains, gamecam, 20f);
     }
 
     public void spawnItem(ItemDef idef) {
@@ -164,6 +179,11 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        for(int i = 0; i < backgrounds.length; i++) {
+            backgrounds[i].render(game.batch);
+        }
+
         renderer.render();
         if(debug) {
             b2dr.render(world, gamecam.combined);
@@ -182,7 +202,6 @@ public class PlayScreen implements Screen {
             item.draw(game.batch);
         }
         game.batch.end();
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
         if (gameOver()) {
