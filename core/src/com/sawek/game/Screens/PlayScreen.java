@@ -35,7 +35,6 @@ import com.sawek.game.Tools.WorldContactListener;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.badlogic.gdx.Gdx.app;
-import static com.sawek.game.Screens.StartScreen.level;
 
 /**
  * Created by Sławek on 2017-09-17.
@@ -70,9 +69,7 @@ public class PlayScreen implements Screen {
     public PlayScreen(MyGdxGame game) {
 
         Preferences prefs = app.getPreferences("mygdxgame");
-        prefs.putInteger("level", level);
-        prefs.flush();
-        this.lvl = prefs.getInteger("level", 0);
+        this.lvl = prefs.getInteger("level", 1);
         atlas = new TextureAtlas("player_enemies_items.pack");
         this.game = game;
         gamecam = new OrthographicCamera();

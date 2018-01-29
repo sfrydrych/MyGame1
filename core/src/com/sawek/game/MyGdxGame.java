@@ -15,6 +15,8 @@ import com.sawek.game.Screens.PlayScreen;
 import com.sawek.game.Screens.SplashScreen;
 import com.sawek.game.Screens.SplashScreen2;
 import com.sawek.game.Screens.StartScreen;
+import com.sawek.game.Screens.StartScreen2;
+import com.sawek.game.Screens.StartScreen3;
 
 public class MyGdxGame extends Game {
     public static final int V_WIDTH = 400;
@@ -47,6 +49,8 @@ public class MyGdxGame extends Game {
     public PlayScreen playScreen;
     public ExitScreen exitScreen;
     public StartScreen startScreen;
+    public StartScreen2 startScreen2;
+    public StartScreen3 startScreen3;
 
 
     @Override
@@ -93,6 +97,8 @@ public class MyGdxGame extends Game {
         levelSelectScreen = new LevelSelectScreen(this);
         exitScreen = new ExitScreen(this);
         startScreen = new StartScreen(this);
+        startScreen2 = new StartScreen2(this);
+        startScreen3 = new StartScreen3(this);
         //setScreen(new PlayScreen(this));
         this.setScreen(splashScreen);
     }
@@ -109,6 +115,8 @@ public class MyGdxGame extends Game {
         levelSelectScreen.dispose();
         playScreen.dispose();
         startScreen.dispose();
+        startScreen2.dispose();
+        startScreen3.dispose();
     }
 
     @Override

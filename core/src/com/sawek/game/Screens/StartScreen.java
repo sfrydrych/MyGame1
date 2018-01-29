@@ -48,6 +48,8 @@ public class StartScreen implements Screen {
         this.playerindeks = indeks;
 
         Preferences prefs = app.getPreferences("mygdxgame");
+        prefs.putInteger("level", level);
+        prefs.flush();
         this.highscore = prefs.getInteger("highscore", 0);
 
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
