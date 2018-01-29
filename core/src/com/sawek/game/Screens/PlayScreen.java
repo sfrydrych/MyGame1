@@ -3,6 +3,7 @@ package com.sawek.game.Screens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -33,6 +34,9 @@ import com.sawek.game.Tools.WorldContactListener;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
+import static com.badlogic.gdx.Gdx.app;
+import static com.sawek.game.Screens.StartScreen.level;
+
 /**
  * Created by Sławek on 2017-09-17.
  */
@@ -58,21 +62,27 @@ public class PlayScreen implements Screen {
     private Array<Item> items;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
+    int lvl;
 
     private Background[] backgrounds;
     Controller controller;
 
-
     public PlayScreen(MyGdxGame game) {
 
+        Preferences prefs = app.getPreferences("mygdxgame");
+        prefs.putInteger("level", level);
+        prefs.flush();
+        this.lvl = prefs.getInteger("level", 0);
         atlas = new TextureAtlas("player_enemies_items.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(MyGdxGame.V_WIDTH / MyGdxGame.PPM, MyGdxGame.V_HEIGHT / MyGdxGame.PPM, gamecam);
         hud = new Hud(game.batch);
         controller = new Controller(game.batch);
+
         maploader = new TmxMapLoader();
-        map = maploader.load("level1.tmx");
+        //map = maploader.load("level1.tmx");
+        map = maploader.load("level" + lvl +".tmx");
 
         renderer = new OrthogonalTiledMapRenderer(map, 1 / MyGdxGame.PPM);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
@@ -86,15 +96,18 @@ public class PlayScreen implements Screen {
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
         itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();
 
-        Texture bgs = MyGdxGame.manager.get("img/bgs.png", Texture.class);
-        TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
-        TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
-        TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
-        backgrounds = new Background[3];
+        Texture bgs2 = MyGdxGame.manager.get("img/bgs2.png", Texture.class);
+        TextureRegion sky = new TextureRegion(bgs2, 0, 0, 320, 240);
+        TextureRegion clouds = new TextureRegion(bgs2, 0, 240, 320, 240);
+        TextureRegion mountains = new TextureRegion(bgs2, 0, 480, 320, 240);
+        TextureRegion buildings = new TextureRegion(bgs2, 0, 720, 3840, 208);
+        backgrounds = new Background[4];
         backgrounds[0] = new Background(sky, gamecam, 0f);
         backgrounds[1] = new Background(clouds, gamecam, 10f);
         backgrounds[2] = new Background(mountains, gamecam, 20f);
+        backgrounds[3] = new Background(buildings, gamecam, 50f);
     }
+
 
     public void spawnItem(ItemDef idef) {
         itemsToSpawn.add(idef);

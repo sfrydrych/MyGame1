@@ -82,6 +82,7 @@ public class MyGdxGame extends Game {
         manager.load("img/right.png", Texture.class);
         manager.load("img/up.png", Texture.class);
         manager.load("img/down.png", Texture.class);
+        manager.load("img/bgs2.png", Texture.class);
         manager.finishLoading();
 
 

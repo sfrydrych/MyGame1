@@ -31,6 +31,7 @@ import static com.sawek.game.Scenes.Hud.timer;
  */
 
 public class StartScreen implements Screen {
+    public static Integer level = 1;
     private Viewport viewport;
     private Stage stage;
     private Game game;
