@@ -34,7 +34,8 @@ public class CoinBox extends InteractiveTileObject {
         } else {
             MyGdxGame.manager.get("audio/sounds/point.wav", Sound.class).play();
             Hud.addScore(200);
-            screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x, body.getPosition().y + 20 / MyGdxGame.PPM), Coin.class));
+            screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x,
+                    body.getPosition().y + 20 / MyGdxGame.PPM), Coin.class));
         }
         getCell().setTile(tileSet.getTile(BLANK_COIN));
     }

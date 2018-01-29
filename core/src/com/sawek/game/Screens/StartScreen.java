@@ -38,7 +38,7 @@ public class StartScreen implements Screen {
     int playertimer, highscore, playerindeks;
     BitmapFont polishFont;
     private TextureRegion reg;
-    private Image backImg, nextImg, lvl1Img;
+    public Image backImg, nextImg, lvl1Img;
 
     public StartScreen(Game game) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
@@ -69,13 +69,11 @@ public class StartScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
 
-
         Texture lvl1Tex = MyGdxGame.manager.get("img/level1.png", Texture.class);
         lvl1Img = new Image(lvl1Tex);
         lvl1Img.setPosition(stage.getWidth() / 2 - lvl1Img.getWidth() / 10, stage.getHeight()  - lvl1Img.getHeight() / 3);
         lvl1Img.addAction(scaleTo(.2f, .2f));
         stage.addActor(lvl1Img);
-
 
 
         Texture backTex = MyGdxGame.manager.get("img/back.png", Texture.class);
@@ -104,7 +102,6 @@ public class StartScreen implements Screen {
         });
         nextImg.addAction(scaleTo(.120f, .120f));
         stage.addActor(nextImg);
-
 
 
         stage.getBatch().begin();

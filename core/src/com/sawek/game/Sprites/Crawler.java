@@ -29,24 +29,41 @@ public class Crawler extends Enemy {
     public Crawler(PlayScreen screen, float x, float y) {
         super(screen, x, y);
         frames = new Array<TextureRegion>();
-        for (int i = 0; i < 2; i++)
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("goomba"), i * 16, 0, 16, 16));
-        walkAnimation = new Animation<TextureRegion>(0.4f, frames);
+        for (int i = 0; i < 4; i++)
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("crawler"), i * 16, 0, 16, 17));
+        walkAnimation = new Animation<TextureRegion>(0.1f, frames);
         stateTime = 0;
-        setBounds(getX(), getY(), 16 / MyGdxGame.PPM, 16 / MyGdxGame.PPM);
+        setBounds(getX(), getY(), 16 / MyGdxGame.PPM, 17 / MyGdxGame.PPM);
         setToDestroy = false;
         destroyed = false;
         angle = 0;
     }
+
+
+    public TextureRegion getFrame(float dt) {
+        TextureRegion region;
+
+        region = walkAnimation.getKeyFrame(stateTime, true);
+
+        if (velocity.x > 0 && region.isFlipX() == false) {
+            region.flip(true, false);
+        }
+        if (velocity.x < 0 && region.isFlipX() == true) {
+            region.flip(true, false);
+        }
+        return region;
+    }
+
 
     public void update(float dt) {
         stateTime += dt;
         if (setToDestroy && !destroyed) {
             world.destroyBody(b2body);
             destroyed = true;
-            setRegion(new TextureRegion(screen.getAtlas().findRegion("goomba"), 32, 0, 16, 16));
+            setRegion(new TextureRegion(screen.getAtlas().findRegion("crawler"), 64, 0, 16, 17));
             stateTime = 0;
         } else if (!destroyed) {
+            setRegion(getFrame(dt));
             b2body.setLinearVelocity(velocity);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion(walkAnimation.getKeyFrame(stateTime, true));
@@ -82,7 +99,7 @@ public class Crawler extends Enemy {
         vertice[2] = new Vector2(-3, 3).scl(1 / MyGdxGame.PPM);
         vertice[3] = new Vector2(3, 3).scl(1 / MyGdxGame.PPM);
         head.set(vertice);
-
+        
         fdef.shape = head;
         fdef.restitution = 0.5f;
         fdef.filter.categoryBits = MyGdxGame.ENEMY_HEAD_BIT;

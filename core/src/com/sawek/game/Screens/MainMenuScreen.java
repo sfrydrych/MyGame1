@@ -24,8 +24,7 @@ public class MainMenuScreen implements Screen {
 
     private final MyGdxGame app;
     private Stage stage;
-    private Image playImg;
-    private Image exitImg;
+    private Image playImg, exitImg, logoImg;
     private TextureRegion reg;
     BitmapFont polishFont;
     private TextButton exitButton;
@@ -55,9 +54,15 @@ public class MainMenuScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
+        Texture logoTex = MyGdxGame.manager.get("img/logo.png", Texture.class);
+        logoImg = new Image(logoTex);
+        logoImg.setPosition(stage.getWidth() / 2 - logoImg.getWidth() / 7, stage.getHeight()  - logoImg.getHeight() / 3);
+        logoImg.addAction(scaleTo(.3f, .3f));
+        stage.addActor(logoImg);
+
         Texture playTex = app.manager.get("img/play.png", Texture.class);
         playImg = new Image(playTex);
-        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 16, stage.getHeight() / 2 - playImg.getHeight() / 5);
+        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 17, stage.getHeight() / 2 - playImg.getHeight() / 5);
         playImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -69,7 +74,7 @@ public class MainMenuScreen implements Screen {
 
         Texture exitTex = app.manager.get("img/exit.png", Texture.class);
         exitImg = new Image(exitTex);
-        exitImg.setPosition(stage.getWidth() / 2 - exitImg.getWidth() / 16, stage.getHeight() / 2 - exitImg.getHeight() / 3);
+        exitImg.setPosition(stage.getWidth() / 2 - exitImg.getWidth() / 17, stage.getHeight() / 2 - exitImg.getHeight() / 3);
         exitImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){

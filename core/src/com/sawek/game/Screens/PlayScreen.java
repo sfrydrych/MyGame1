@@ -1,5 +1,6 @@
 package com.sawek.game.Screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -23,6 +24,7 @@ import com.sawek.game.Items.Item;
 import com.sawek.game.Items.ItemDef;
 import com.sawek.game.MyGdxGame;
 import com.sawek.game.Scenes.Background;
+import com.sawek.game.Scenes.Controller;
 import com.sawek.game.Scenes.Hud;
 import com.sawek.game.Sprites.Enemy;
 import com.sawek.game.Sprites.Player;
@@ -36,6 +38,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 
 public class PlayScreen implements Screen {
+
 
     private boolean debug = false;
     private MyGdxGame game;
@@ -57,6 +60,7 @@ public class PlayScreen implements Screen {
     private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
 
     private Background[] backgrounds;
+    Controller controller;
 
 
     public PlayScreen(MyGdxGame game) {
@@ -66,9 +70,10 @@ public class PlayScreen implements Screen {
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(MyGdxGame.V_WIDTH / MyGdxGame.PPM, MyGdxGame.V_HEIGHT / MyGdxGame.PPM, gamecam);
         hud = new Hud(game.batch);
-
+        controller = new Controller(game.batch);
         maploader = new TmxMapLoader();
         map = maploader.load("level1.tmx");
+
         renderer = new OrthogonalTiledMapRenderer(map, 1 / MyGdxGame.PPM);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
@@ -128,17 +133,17 @@ public class PlayScreen implements Screen {
 
     public void handleInput(float dt) {
         if ((player.currentState != Player.State.DEAD) && (player.currentState == Player.State.JUMPING) && (player.currentState != Player.State.WINNER)) {
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
+            if (((Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)) || (controller.isRightPressed()) && player.b2body.getLinearVelocity().x <= 2)
                 player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
+            if (((Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)) || (controller.isLeftPressed()) && player.b2body.getLinearVelocity().x >= -2)
                 player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
         }
         if ((player.currentState != Player.State.DEAD) && (player.currentState != Player.State.JUMPING) && (player.currentState != Player.State.WINNER)) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
+            if ((Gdx.input.isKeyJustPressed(Input.Keys.UP)) || (controller.isUpPressed()))
                 player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
+            if (((Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)) || (controller.isRightPressed()) && player.b2body.getLinearVelocity().x <= 2)
                 player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
+            if (((Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)) || (controller.isLeftPressed()) && player.b2body.getLinearVelocity().x >= -2)
                 player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
         }
     }
@@ -213,6 +218,9 @@ public class PlayScreen implements Screen {
             game.setScreen(new WinScreen(game));
             dispose();
         }
+
+        if(Gdx.app.getType() == Application.ApplicationType.Android)
+            controller.draw();
     }
 
     public boolean gameOver() {
@@ -232,6 +240,7 @@ public class PlayScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         gamePort.update(width, height);
+        controller.resize(width, height);
     }
 
     public TiledMap getMap() {

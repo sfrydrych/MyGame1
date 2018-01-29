@@ -5,7 +5,7 @@ filter: Nearest,Nearest
 repeat: none
 player
   rotate: false
-  xy: 1, 27
+  xy: 1, 26
   size: 112, 32
   orig: 112, 32
   offset: 0, 0
@@ -13,27 +13,27 @@ player
 turtle
   rotate: false
   xy: 1, 1
-  size: 96, 24
-  orig: 96, 24
+  size: 80, 23
+  orig: 80, 23
   offset: 0, 0
   index: -1
-goomba
+crawler
   rotate: false
-  xy: 115, 43
-  size: 48, 16
-  orig: 48, 16
+  xy: 115, 41
+  size: 80, 17
+  orig: 80, 17
   offset: 0, 0
   index: -1
 point
   rotate: false
-  xy: 165, 43
+  xy: 197, 42
   size: 32, 16
   orig: 32, 16
   offset: 0, 0
   index: -1
 indeks
   rotate: false
-  xy: 199, 43
+  xy: 83, 8
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
