@@ -35,7 +35,7 @@ public class WinScreen implements Screen {
     private Stage stage;
     private Game game;
     private Hud hud;
-    int playerscore, highscore, playerindeks;
+    int playerscore, highscore, playerindeks, lvl;
     BitmapFont polishFont;
     private TextureRegion reg;
     private Image backImg, retryImg, nextImg, winImg;
@@ -47,12 +47,35 @@ public class WinScreen implements Screen {
         this.playerindeks = indeks;
 
         Preferences prefs = app.getPreferences("mygdxgame");
-        this.highscore = prefs.getInteger("highscore", 0);
+        this.lvl = prefs.getInteger("level", 1);
 
-        if (playerscore > highscore){
-            prefs.putInteger("highscore", playerscore);
-            prefs.flush();
+        if (lvl == 1) {
+            this.highscore = prefs.getInteger("highscore", 0);
+
+            if (playerscore > highscore) {
+                prefs.putInteger("highscore", playerscore);
+                prefs.flush();
+            }
         }
+
+        else if (lvl == 2) {
+            this.highscore = prefs.getInteger("highscore2", 0);
+
+            if (playerscore > highscore) {
+                prefs.putInteger("highscore2", playerscore);
+                prefs.flush();
+            }
+        }
+
+        else if (lvl == 3) {
+            this.highscore = prefs.getInteger("highscore2", 0);
+
+            if (playerscore > highscore) {
+                prefs.putInteger("highscore2", playerscore);
+                prefs.flush();
+            }
+        }
+
 
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((MyGdxGame) game).batch);
@@ -117,8 +140,18 @@ public class WinScreen implements Screen {
         nextImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new PlayScreen((MyGdxGame) game));
-                dispose();
+                Preferences prefs = app.getPreferences("mygdxgame");
+                int lvla = prefs.getInteger("level", 1);
+                if (lvla >= 3){
+                    game.setScreen(new LevelSelectScreen((MyGdxGame) game));
+                    dispose();
+                } else {
+                    int lvlb = lvla + 1;
+                    prefs.putInteger("level", lvlb);
+                    prefs.flush();
+                    game.setScreen(new PlayScreen((MyGdxGame) game));
+                    dispose();
+                }
             }
         });
         nextImg.addAction(scaleTo(.120f, .120f));

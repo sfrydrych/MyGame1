@@ -124,7 +124,7 @@ public class MyGdxGame extends Game {
         super.render();
         manager.update();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+        if ((Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) || (Gdx.input.isKeyJustPressed(Input.Keys.BACK))) {
             Gdx.app.exit();
         }
     }

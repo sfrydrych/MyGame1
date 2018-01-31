@@ -36,7 +36,7 @@ public class GameOverScreen implements Screen {
     private Game game;
     //private MyGdxGame app;
     private Hud hud;
-    int playerscore, highscore, playerindeks;
+    int playerscore, highscore, playerindeks, lvl;
     BitmapFont polishFont;
     private TextureRegion reg;
     private Image backImg, retryImg, loseImg;
@@ -48,11 +48,33 @@ public class GameOverScreen implements Screen {
         this.playerindeks = indeks;
 
         Preferences prefs = app.getPreferences("mygdxgame");
-        this.highscore = prefs.getInteger("highscore", 0);
+        this.lvl = prefs.getInteger("level", 1);
 
-        if (playerscore > highscore){
-            prefs.putInteger("highscore", playerscore);
-            prefs.flush();
+        if (lvl == 1) {
+            this.highscore = prefs.getInteger("highscore", 0);
+
+            if (playerscore > highscore) {
+                prefs.putInteger("highscore", playerscore);
+                prefs.flush();
+            }
+        }
+
+        else if (lvl == 2) {
+            this.highscore = prefs.getInteger("highscore2", 0);
+
+            if (playerscore > highscore) {
+                prefs.putInteger("highscore2", playerscore);
+                prefs.flush();
+            }
+        }
+
+        else if (lvl == 3) {
+            this.highscore = prefs.getInteger("highscore2", 0);
+
+            if (playerscore > highscore) {
+                prefs.putInteger("highscore2", playerscore);
+                prefs.flush();
+            }
         }
 
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
