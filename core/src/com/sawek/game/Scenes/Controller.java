@@ -37,9 +37,6 @@ public class Controller {
                     case Input.Keys.UP:
                         upPressed = true;
                         break;
-                    case Input.Keys.DOWN:
-                        downPressed = true;
-                        break;
                     case Input.Keys.LEFT:
                         leftPressed = true;
                         break;
@@ -55,9 +52,6 @@ public class Controller {
                 switch(keycode){
                     case Input.Keys.UP:
                         upPressed = false;
-                        break;
-                    case Input.Keys.DOWN:
-                        downPressed = false;
                         break;
                     case Input.Keys.LEFT:
                         leftPressed = false;
@@ -76,7 +70,7 @@ public class Controller {
         table.left().bottom();
 
         Image upImg = new Image(new Texture("img/up.png"));
-        upImg.setSize(50, 50);
+        upImg.setSize(40, 40);
         upImg.addListener(new InputListener() {
 
             @Override
@@ -91,24 +85,8 @@ public class Controller {
             }
         });
 
-        Image downImg = new Image(new Texture("img/down.png"));
-        downImg.setSize(50, 50);
-        downImg.addListener(new InputListener() {
-
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                downPressed = true;
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                downPressed = false;
-            }
-        });
-
         Image rightImg = new Image(new Texture("img/right.png"));
-        rightImg.setSize(50, 50);
+        rightImg.setSize(40, 40);
         rightImg.addListener(new InputListener() {
 
             @Override
@@ -124,7 +102,7 @@ public class Controller {
         });
 
         Image leftImg = new Image(new Texture("img/left.png"));
-        leftImg.setSize(50, 50);
+        leftImg.setSize(40, 40);
         leftImg.addListener(new InputListener() {
 
             @Override
@@ -139,18 +117,10 @@ public class Controller {
             }
         });
 
-        table.add();
+        table.row().pad(5, 5, 10, 5);
+        table.add(leftImg).size(leftImg.getWidth(), leftImg.getHeight()).padLeft(10);
+        table.add(rightImg).size(rightImg.getWidth(), rightImg.getHeight()).padRight(245);
         table.add(upImg).size(upImg.getWidth(), upImg.getHeight());
-        table.add();
-        table.row().pad(5, 5, 5, 5);
-        table.add(leftImg).size(leftImg.getWidth(), leftImg.getHeight());
-        table.add();
-        table.add(rightImg).size(rightImg.getWidth(), rightImg.getHeight());
-        table.row().padBottom(5);
-        table.add();
-        table.add(downImg).size(downImg.getWidth(), downImg.getHeight());
-        table.add();
-
         stage.addActor(table);
     }
 
@@ -160,10 +130,6 @@ public class Controller {
 
     public boolean isUpPressed() {
         return upPressed;
-    }
-
-    public boolean isDownPressed() {
-        return downPressed;
     }
 
     public boolean isLeftPressed() {

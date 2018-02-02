@@ -26,10 +26,6 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 import static com.sawek.game.Scenes.Hud.indeks;
 import static com.sawek.game.Scenes.Hud.score;
 
-/**
- * Created by Sławek on 2017-09-21.
- */
-
 public class GameOverScreen implements Screen {
     private Viewport viewport;
     private Stage stage;

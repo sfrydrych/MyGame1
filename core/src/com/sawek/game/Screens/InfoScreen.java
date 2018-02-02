@@ -18,14 +18,14 @@ import com.sawek.game.MyGdxGame;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 
-public class ExitScreen implements Screen {
+public class InfoScreen implements Screen {
     private Stage stage;
     private final MyGdxGame app;
     BitmapFont polishFont;
-    private Image noImg, yesImg;
+    private Image backImg;
     private TextureRegion reg;
 
-    public ExitScreen(final MyGdxGame app) {
+    public InfoScreen(final MyGdxGame app) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
         this.app = app;
         this.stage = new Stage(new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, app.camera));
@@ -48,30 +48,17 @@ public class ExitScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        Texture yesTex = app.manager.get("img/yes.png", Texture.class);
-        yesImg = new Image(yesTex);
-        yesImg.setPosition(stage.getWidth() / 4 + yesImg.getWidth()/32, stage.getHeight() / 4 - yesImg.getHeight() / 8);
-        yesImg.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                Gdx.app.exit();
-            }
-        });
-        yesImg.addAction(scaleTo(.120f, .120f));
-        stage.addActor(yesImg);
-
-
-        Texture noTex = app.manager.get("img/no.png", Texture.class);
-        noImg = new Image(noTex);
-        noImg.setPosition(stage.getWidth() / 2 + noImg.getWidth()/8, stage.getHeight() / 4 - noImg.getHeight() / 8);
-        noImg.addListener(new ClickListener(){
+        Texture backTex = app.manager.get("img/back.png", Texture.class);
+        backImg = new Image(backTex);
+        backImg.setPosition(stage.getWidth() / 4 + backImg.getWidth() / 16, stage.getHeight() / 4 - backImg.getHeight() / 8);
+        backImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 app.setScreen(app.mainMenuScreen);
             }
         });
-        noImg.addAction(scaleTo(.120f, .120f));
-        stage.addActor(noImg);
+        backImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(backImg);
 
 
         stage.getBatch().begin();
@@ -111,3 +98,5 @@ public class ExitScreen implements Screen {
         stage.dispose();
     }
 }
+
+

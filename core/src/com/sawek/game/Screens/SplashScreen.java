@@ -18,10 +18,6 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
-/**
- * Created by Sławek on 2017-09-30.
- */
-
 public class SplashScreen implements Screen {
     private final MyGdxGame app;
     private Stage stage;
@@ -48,8 +44,9 @@ public class SplashScreen implements Screen {
         splashImg.setPosition(stage.getWidth() / 2 - 150, stage.getHeight() / 2 - 26);
         splashImg.addAction(sequence(alpha(0),
                 scaleTo(.5f, .5f),
-                fadeIn(2f, Interpolation.pow2),
-                delay(1.5f), fadeOut(1.25f), run(transitionRunnable)));
+                fadeIn(1.5f, Interpolation.pow2),
+                delay(2f), fadeOut(1.5f),
+                run(transitionRunnable)));
         stage.addActor(splashImg);
     }
 

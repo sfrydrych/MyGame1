@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sawek.game.MyGdxGame;
@@ -24,11 +23,9 @@ public class MainMenuScreen implements Screen {
 
     private final MyGdxGame app;
     private Stage stage;
-    private Image playImg, exitImg, logoImg;
+    private Image playImg, exitImg, logoImg, infoImg;
     private TextureRegion reg;
     BitmapFont polishFont;
-    private TextButton exitButton;
-    private TextButton.TextButtonStyle exitButtonStyle;
 
     public MainMenuScreen(final MyGdxGame app) {
 
@@ -62,7 +59,7 @@ public class MainMenuScreen implements Screen {
 
         Texture playTex = app.manager.get("img/play.png", Texture.class);
         playImg = new Image(playTex);
-        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 17, stage.getHeight() / 2 - playImg.getHeight() / 5);
+        playImg.setPosition(stage.getWidth() / 2 - playImg.getWidth() / 17, stage.getHeight() / 3 );
         playImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -72,9 +69,21 @@ public class MainMenuScreen implements Screen {
         playImg.addAction(scaleTo(.120f, .120f));
         stage.addActor(playImg);
 
+        Texture infoTex = app.manager.get("img/info.png", Texture.class);
+        infoImg = new Image(infoTex);
+        infoImg.setPosition(stage.getWidth() / 2 - infoImg.getWidth() / 17, stage.getHeight() / 3 - playImg.getHeight() / 9);
+        infoImg.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                app.setScreen(app.infoScreen);
+            }
+        });
+        infoImg.addAction(scaleTo(.120f, .120f));
+        stage.addActor(infoImg);
+
         Texture exitTex = app.manager.get("img/exit.png", Texture.class);
         exitImg = new Image(exitTex);
-        exitImg.setPosition(stage.getWidth() / 2 - exitImg.getWidth() / 17, stage.getHeight() / 2 - exitImg.getHeight() / 3);
+        exitImg.setPosition(stage.getWidth() / 2 - exitImg.getWidth() / 17, stage.getHeight() / 3 - playImg.getHeight() / 4);
         exitImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -83,20 +92,6 @@ public class MainMenuScreen implements Screen {
         });
         exitImg.addAction(scaleTo(.120f, .120f));
         stage.addActor(exitImg);
-
-        /*exitButtonStyle = new TextButton.TextButtonStyle();
-        exitButtonStyle.font = polishFont;
-        exitButton = new TextButton("Wyjście", exitButtonStyle);
-        exitButton.setPosition(stage.getWidth() / 2 - exitButton.getWidth() / 16, stage.getHeight() / 2 - exitButton.getHeight() / 3);
-        exitButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                app.setScreen(app.exitScreen);
-            }
-        });
-        exitButton.setTransform(true);
-        exitButton.setScale(0.6f,0.6f);
-        stage.addActor(exitButton);*/
 
         app.batch.setProjectionMatrix(stage.getCamera().combined);
         app.batch.begin();
