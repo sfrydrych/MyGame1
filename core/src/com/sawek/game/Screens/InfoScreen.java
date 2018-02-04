@@ -63,9 +63,9 @@ public class InfoScreen implements Screen {
 
         stage.getBatch().begin();
         stage.getBatch().draw(reg, 0, 0);
-        GlyphLayout questionLayout = new GlyphLayout(polishFont, "Czy na pewno chcesz wyjść?", Color.WHITE, 0, Align.left, false);
-        polishFont.draw(stage.getBatch(), questionLayout, stage.getWidth() / 2 - questionLayout.width / 2, 2 * stage.getHeight() / 3 - questionLayout.height);
-        polishFont.getData().setScale(0.4f,0.4f);
+        GlyphLayout questionLayout = new GlyphLayout(polishFont, "Gracz wciela się w rolę studenta, którego zadaniem jest\nzbieranie monet i indeksów rozmieszczonych i ukrytych\nna mapie. Za zebrane przedmioty gracz otrzymuje punkty,\nktóre na koniec są podliczane i porównywane z najwyższym\nwynikiem uzyskanym na danym poziomie. Poruszając się po\nmapie należy unikać przeszkód i uważać na przeciwników\nw postaci słabych ocen. Za ich pokonanie otrzymywane są\ndodatkowe punkty. Poziom zostaje zaliczony po przejściu\nmapy w wyznaczonym czasie.", Color.WHITE, 0, Align.left, false);
+        polishFont.draw(stage.getBatch(), questionLayout, 4, stage.getHeight() - 10);
+        polishFont.getData().setScale(0.265f,0.265f);
         stage.getBatch().end();
 
         update(delta);

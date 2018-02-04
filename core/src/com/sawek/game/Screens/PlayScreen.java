@@ -90,11 +90,11 @@ public class PlayScreen implements Screen {
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
         itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();
 
-        Texture bgs2 = MyGdxGame.manager.get("img/bgs2.png", Texture.class);
-        TextureRegion sky = new TextureRegion(bgs2, 0, 0, 320, 240);
-        TextureRegion clouds = new TextureRegion(bgs2, 0, 240, 320, 240);
-        TextureRegion mountains = new TextureRegion(bgs2, 0, 480, 320, 240);
-        TextureRegion buildings = new TextureRegion(bgs2, 0, 720, 3840, 208);
+        Texture bgs = MyGdxGame.manager.get("img/bgs" + lvl +".png", Texture.class);
+        TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
+        TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
+        TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
+        TextureRegion buildings = new TextureRegion(bgs, 0, 720, 3840, 208);
         backgrounds = new Background[4];
         backgrounds[0] = new Background(sky, gamecam, 0f);
         backgrounds[1] = new Background(clouds, gamecam, 10f);
