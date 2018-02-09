@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -54,7 +55,7 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     private B2WorldCreator creator;
     private Player player;
-    //private Music music;
+    private Music music;
     private Array<Item> items;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn2;
@@ -89,6 +90,7 @@ public class PlayScreen implements Screen {
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
         itemsToSpawn2 = new LinkedBlockingQueue<ItemDef>();
+        music = MyGdxGame.manager.get("audio/music/theme.mp3", Music.class);
 
         Texture bgs = MyGdxGame.manager.get("img/bgs" + lvl +".png", Texture.class);
         TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
@@ -160,7 +162,7 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         handleSpawningItems();
         handleSpawningItems2();
-        world.step(1 / 60f, 3, 2);
+        world.step(1 / 60f, 6, 2);
         player.update(dt);
         for (Enemy enemy : creator.getEnemies()) {
             enemy.update(dt);
@@ -219,11 +221,13 @@ public class PlayScreen implements Screen {
 
         if (gameOver()) {
             game.setScreen(new GameOverScreen(game));
+            music.stop();
             dispose();
         }
 
         if (win()) {
             game.setScreen(new WinScreen(game));
+            music.stop();
             dispose();
         }
 

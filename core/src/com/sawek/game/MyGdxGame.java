@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,6 +25,7 @@ import com.sawek.game.Screens.StartScreen3;
 import static com.badlogic.gdx.Gdx.app;
 
 public class MyGdxGame extends Game {
+    public static final String TITLE = "PWSZrunner";
     public static final int V_WIDTH = 400;
     public static final int V_HEIGHT = 208;
     public static final float PPM = 100;
@@ -66,6 +68,7 @@ public class MyGdxGame extends Game {
         camera.setToOrtho(false, V_WIDTH, V_HEIGHT);
         batch = new SpriteBatch();
         manager = new AssetManager();
+        manager.load("audio/music/theme.mp3", Music.class);
         manager.load("audio/sounds/hit.wav", Sound.class);
         manager.load("audio/sounds/indeks.wav", Sound.class);
         manager.load("audio/sounds/playerlose.wav", Sound.class);
@@ -76,6 +79,9 @@ public class MyGdxGame extends Game {
         manager.load("img/level1.png", Texture.class);
         manager.load("img/level2.png", Texture.class);
         manager.load("img/level3.png", Texture.class);
+        manager.load("img/stage1.png", Texture.class);
+        manager.load("img/stage2.png", Texture.class);
+        manager.load("img/stage3.png", Texture.class);
         manager.load("img/yes.png", Texture.class);
         manager.load("img/no.png", Texture.class);
         manager.load("img/retry.png", Texture.class);

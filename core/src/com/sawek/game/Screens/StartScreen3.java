@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -40,6 +41,7 @@ public class StartScreen3 implements Screen {
     BitmapFont polishFont;
     private TextureRegion reg;
     public Image backImg, nextImg, lvl3Img;
+    private Music music;
 
     public StartScreen3(Game game) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
@@ -56,6 +58,8 @@ public class StartScreen3 implements Screen {
         stage = new Stage(viewport, ((MyGdxGame) game).batch);
 
         polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));
+        music = MyGdxGame.manager.get("audio/music/theme.mp3", Music.class);
+        music.setLooping(true);
     }
 
     @Override
@@ -72,7 +76,7 @@ public class StartScreen3 implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.input.setInputProcessor(stage);
 
-        Texture lvl1Tex = MyGdxGame.manager.get("img/level3.png", Texture.class);
+        Texture lvl1Tex = MyGdxGame.manager.get("img/stage3.png", Texture.class);
         lvl3Img = new Image(lvl1Tex);
         lvl3Img.setPosition(stage.getWidth() / 2 - lvl3Img.getWidth() / 10, stage.getHeight()  - lvl3Img.getHeight() / 3);
         lvl3Img.addAction(scaleTo(.2f, .2f));
@@ -100,6 +104,8 @@ public class StartScreen3 implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new PlayScreen((MyGdxGame) game));
+                music.stop();
+                music.play();
                 dispose();
             }
         });

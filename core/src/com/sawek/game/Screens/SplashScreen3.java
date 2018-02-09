@@ -2,6 +2,7 @@ package com.sawek.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,7 @@ public class SplashScreen3 implements Screen {
     private final MyGdxGame app;
     private Stage stage;
     private Image splashImg;
+    private Music music;
     BitmapFont polishFont;
 
     public SplashScreen3(final MyGdxGame app) {
@@ -61,6 +63,9 @@ public class SplashScreen3 implements Screen {
     public void render(float delta) {
         if (Gdx.input.justTouched()) {
             app.setScreen(app.mainMenuScreen);
+            music = MyGdxGame.manager.get("audio/music/theme.mp3", Music.class);
+            music.setLooping(true);
+            music.play();
         }
 
         Gdx.gl.glClearColor(1f, 1f, 1f, 1f);

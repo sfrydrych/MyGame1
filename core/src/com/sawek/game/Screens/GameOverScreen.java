@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -36,6 +37,7 @@ public class GameOverScreen implements Screen {
     BitmapFont polishFont;
     private TextureRegion reg;
     private Image backImg, retryImg, loseImg;
+    private Music music;
 
     public GameOverScreen(Game game) {
         reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
@@ -76,6 +78,8 @@ public class GameOverScreen implements Screen {
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((MyGdxGame) game).batch);
         polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));
+        music = MyGdxGame.manager.get("audio/music/theme.mp3", Music.class);
+        music.setLooping(true);
     }
 
     @Override
@@ -108,6 +112,8 @@ public class GameOverScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new LevelSelectScreen((MyGdxGame) game));
+                music.stop();
+                music.play();
                 dispose();
             }
         });
@@ -122,6 +128,8 @@ public class GameOverScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new PlayScreen((MyGdxGame) game));
+                music.stop();
+                music.play();
                 dispose();
             }
         });
