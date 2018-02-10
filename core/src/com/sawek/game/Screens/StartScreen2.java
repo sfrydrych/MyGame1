@@ -24,7 +24,6 @@ import com.sawek.game.Scenes.Hud;
 
 import static com.badlogic.gdx.Gdx.app;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
-import static com.sawek.game.Scenes.Hud.indeks;
 import static com.sawek.game.Scenes.Hud.timer;
 
 /**
@@ -37,22 +36,23 @@ public class StartScreen2 implements Screen {
     private Stage stage;
     private Game game;
     private Hud hud;
-    int playertimer, highscore, playerindeks;
+    int playertimer, highscore, idkscount;
     BitmapFont polishFont;
     private TextureRegion reg;
     public Image backImg, nextImg, lvl2Img;
     private Music music;
 
     public StartScreen2(Game game) {
-        reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
+        reg = new TextureRegion(MyGdxGame.manager.get("img/sky.png", Texture.class), 0, 0, 400, 240);
         this.game = game;
         this.playertimer = timer;
-        this.playerindeks = indeks;
+        //this.playerindeks = indeks;
 
         Preferences prefs = app.getPreferences("mygdxgame");
         prefs.putInteger("level", level2);
         prefs.flush();
         this.highscore = prefs.getInteger("highscore2", 0);
+        this.idkscount = prefs.getInteger("indekscount2", 0);
 
         viewport = new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((MyGdxGame) game).batch);
@@ -116,7 +116,7 @@ public class StartScreen2 implements Screen {
         stage.getBatch().begin();
         stage.getBatch().draw(reg, 0, 0);
         GlyphLayout highScoreLayout = new GlyphLayout(polishFont, "Najleszy Wynik: " + highscore, Color.WHITE, 0, Align.left, false);
-        GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nIndeksy do zdobycia: " + playerindeks + "/3", Color.WHITE, 0, Align.left, false);
+        GlyphLayout indeksLayout = new GlyphLayout(polishFont, "\nZdobyte indeksy: " + idkscount + "/3", Color.WHITE, 0, Align.left, false);
         GlyphLayout timerLayout = new GlyphLayout(polishFont, "\nCzas poziomu: " + playertimer, Color.WHITE, 0, Align.left, false);
         polishFont.draw(stage.getBatch(), highScoreLayout, stage.getWidth() / 2 - highScoreLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height / 2);
         polishFont.draw(stage.getBatch(), indeksLayout, stage.getWidth() / 2 - indeksLayout.width / 2, 2 * stage.getHeight() / 3 - highScoreLayout.height);

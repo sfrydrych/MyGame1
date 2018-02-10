@@ -36,14 +36,14 @@ public class WinScreen implements Screen {
     private Stage stage;
     private Game game;
     private Hud hud;
-    int playerscore, highscore, playerindeks, lvl;
+    int playerscore, highscore, playerindeks, idkscount, lvl;
     BitmapFont polishFont;
     private TextureRegion reg;
     private Image backImg, retryImg, nextImg, winImg;
     private Music music;
 
     public WinScreen(Game game) {
-        reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
+        reg = new TextureRegion(MyGdxGame.manager.get("img/sky.png", Texture.class), 0, 0, 400, 240);
         this.game = game;
         this.playerscore = score;
         this.playerindeks = indeks;
@@ -53,27 +53,45 @@ public class WinScreen implements Screen {
 
         if (lvl == 1) {
             this.highscore = prefs.getInteger("highscore", 0);
+            this.idkscount = prefs.getInteger("indekscount", 0);
 
             if (playerscore > highscore) {
                 prefs.putInteger("highscore", playerscore);
+                prefs.flush();
+            }
+
+            if (playerindeks > idkscount) {
+                prefs.putInteger("indekscount", playerindeks);
                 prefs.flush();
             }
         }
 
         else if (lvl == 2) {
             this.highscore = prefs.getInteger("highscore2", 0);
+            this.idkscount = prefs.getInteger("indekscount2", 0);
 
             if (playerscore > highscore) {
                 prefs.putInteger("highscore2", playerscore);
+                prefs.flush();
+            }
+
+            if (playerindeks > idkscount) {
+                prefs.putInteger("indekscount2", playerindeks);
                 prefs.flush();
             }
         }
 
         else if (lvl == 3) {
             this.highscore = prefs.getInteger("highscore2", 0);
+            this.idkscount = prefs.getInteger("indekscount3", 0);
 
             if (playerscore > highscore) {
-                prefs.putInteger("highscore2", playerscore);
+                prefs.putInteger("highscore3", playerscore);
+                prefs.flush();
+            }
+
+            if (playerindeks > idkscount) {
+                prefs.putInteger("indekscount3", playerindeks);
                 prefs.flush();
             }
         }

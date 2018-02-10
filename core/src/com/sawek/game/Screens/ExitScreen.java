@@ -26,7 +26,7 @@ public class ExitScreen implements Screen {
     private TextureRegion reg;
 
     public ExitScreen(final MyGdxGame app) {
-        reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
+        reg = new TextureRegion(MyGdxGame.manager.get("img/sky.png", Texture.class), 0, 0, 400, 240);
         this.app = app;
         this.stage = new Stage(new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, app.camera));
         polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));

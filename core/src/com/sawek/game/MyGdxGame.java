@@ -25,7 +25,7 @@ import com.sawek.game.Screens.StartScreen3;
 import static com.badlogic.gdx.Gdx.app;
 
 public class MyGdxGame extends Game {
-    public static final String TITLE = "PWSZrunner";
+    public static final String TITLE = "Sesja w PWSZ";
     public static final int V_WIDTH = 400;
     public static final int V_HEIGHT = 208;
     public static final float PPM = 100;
@@ -89,7 +89,7 @@ public class MyGdxGame extends Game {
         manager.load("img/back.png", Texture.class);
         manager.load("img/play.png", Texture.class);
         manager.load("img/exit.png", Texture.class);
-        manager.load("img/bgs.png", Texture.class);
+        manager.load("img/sky.png", Texture.class);
         manager.load("img/info.png", Texture.class);
         manager.load("img/continue.png", Texture.class);
         manager.load("img/win.png", Texture.class);
@@ -100,6 +100,8 @@ public class MyGdxGame extends Game {
         manager.load("img/up.png", Texture.class);
         manager.load("img/bgs1.png", Texture.class);
         manager.load("img/dot.png", Texture.class);
+        manager.load("img/screen1.png", Texture.class);
+        manager.load("img/screen2.png", Texture.class);
         manager.finishLoading();
 
         Preferences prefs = app.getPreferences("mygdxgame");

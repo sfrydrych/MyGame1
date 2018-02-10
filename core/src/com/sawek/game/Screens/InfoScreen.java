@@ -26,7 +26,7 @@ public class InfoScreen implements Screen {
     private TextureRegion reg;
 
     public InfoScreen(final MyGdxGame app) {
-        reg = new TextureRegion(MyGdxGame.manager.get("img/bgs.png", Texture.class), 0, 0, 400, 240);
+        reg = new TextureRegion(MyGdxGame.manager.get("img/sky.png", Texture.class), 0, 0, 400, 240);
         this.app = app;
         this.stage = new Stage(new FitViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, app.camera));
         polishFont = new BitmapFont(Gdx.files.internal("fonts/polishfont.fnt"));
@@ -50,7 +50,7 @@ public class InfoScreen implements Screen {
 
         Texture backTex = app.manager.get("img/back.png", Texture.class);
         backImg = new Image(backTex);
-        backImg.setPosition(stage.getWidth() / 4 + backImg.getWidth() / 16, stage.getHeight() / 4 - backImg.getHeight() / 8);
+        backImg.setPosition(stage.getWidth() / 4 + backImg.getWidth() / 14, stage.getHeight() / 4 - backImg.getHeight() / 8);
         backImg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
