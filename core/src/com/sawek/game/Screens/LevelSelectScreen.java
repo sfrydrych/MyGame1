@@ -114,7 +114,7 @@ public class LevelSelectScreen implements Screen {
         stage.addActor(screen2Img);
 
 
-        Texture screen3Tex = app.manager.get("img/screen2.png", Texture.class);
+        Texture screen3Tex = app.manager.get("img/screen3.png", Texture.class);
         screen3Img = new Image(screen3Tex);
         screen3Img.setPosition(stage.getWidth() / 2 + screen3Img.getWidth() / 5 + 3, stage.getHeight() / 2 + screen3Img.getHeight() / 24);
         screen3Img.addListener(new ClickListener(){

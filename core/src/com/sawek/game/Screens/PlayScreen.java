@@ -96,12 +96,12 @@ public class PlayScreen implements Screen {
         TextureRegion sky = new TextureRegion(bgs, 0, 0, 320, 240);
         TextureRegion clouds = new TextureRegion(bgs, 0, 240, 320, 240);
         TextureRegion mountains = new TextureRegion(bgs, 0, 480, 320, 240);
-        TextureRegion buildings = new TextureRegion(bgs, 0, 720, 3840, 208);
+        TextureRegion buildings = new TextureRegion(bgs, 0, 720, 1440, 208);
         backgrounds = new Background[4];
         backgrounds[0] = new Background(sky, gamecam, 0f);
         backgrounds[1] = new Background(clouds, gamecam, 10f);
         backgrounds[2] = new Background(mountains, gamecam, 20f);
-        backgrounds[3] = new Background(buildings, gamecam, 50f);
+        backgrounds[3] = new Background(buildings, gamecam, 30f);
     }
 
 

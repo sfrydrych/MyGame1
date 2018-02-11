@@ -99,9 +99,12 @@ public class MyGdxGame extends Game {
         manager.load("img/right.png", Texture.class);
         manager.load("img/up.png", Texture.class);
         manager.load("img/bgs1.png", Texture.class);
+        manager.load("img/bgs2.png", Texture.class);
+        manager.load("img/bgs3.png", Texture.class);
         manager.load("img/dot.png", Texture.class);
         manager.load("img/screen1.png", Texture.class);
         manager.load("img/screen2.png", Texture.class);
+        manager.load("img/screen3.png", Texture.class);
         manager.finishLoading();
 
         Preferences prefs = app.getPreferences("mygdxgame");

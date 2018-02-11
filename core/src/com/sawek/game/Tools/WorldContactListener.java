@@ -46,12 +46,12 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
                 break;
-            /*case MyGdxGame.ENEMY_BIT | MyGdxGame.WIN_WALL_BIT:
+            case MyGdxGame.ENEMY_BIT | MyGdxGame.WIN_WALL_BIT:
                 if (fixA.getFilterData().categoryBits == MyGdxGame.ENEMY_BIT)
                     ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
                 else
                     ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
-                break;*/
+                break;
             case MyGdxGame.PLAYER_BIT | MyGdxGame.ENEMY_BIT:
                 if (fixA.getFilterData().categoryBits == MyGdxGame.PLAYER_BIT)
                     if (fixA.getFilterData().categoryBits == MyGdxGame.PLAYER_BIT)

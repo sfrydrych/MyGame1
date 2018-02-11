@@ -82,7 +82,7 @@ public class Crawler extends Enemy {
         shape.setRadius(6 / MyGdxGame.PPM);
         fdef.filter.categoryBits = MyGdxGame.ENEMY_BIT;
         fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
-                //MyGdxGame.WIN_WALL_BIT |
+                MyGdxGame.WIN_WALL_BIT |
                 MyGdxGame.COIN_BOX_BIT |
                 MyGdxGame.INDEKS_BOX_BIT |
                 MyGdxGame.BRICK_BIT |
