@@ -14,10 +14,6 @@ import com.sawek.game.MyGdxGame;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
 
-/**
- * Created by Sławek on 2018-01-08.
- */
-
 public class LevelSelectScreen implements Screen {
 
     private final MyGdxGame app;

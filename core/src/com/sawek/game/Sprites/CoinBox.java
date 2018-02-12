@@ -10,17 +10,13 @@ import com.sawek.game.MyGdxGame;
 import com.sawek.game.Scenes.Hud;
 import com.sawek.game.Screens.PlayScreen;
 
-/**
- * Created by Sławek on 2017-09-18.
- */
-
 public class CoinBox extends InteractiveTileObject {
     private static TiledMapTileSet tileSet;
-    private final int BLANK_COIN = 28;
+    private final int BLANK_COIN = 108;
 
     public CoinBox(PlayScreen screen, MapObject object) {
         super(screen, object);
-        tileSet = map.getTileSets().getTileSet("tileset_gutter");
+        tileSet = map.getTileSets().getTileSet("tileset");
         fixture.setUserData(this);
         setCategoryFilter(MyGdxGame.COIN_BOX_BIT);
     }

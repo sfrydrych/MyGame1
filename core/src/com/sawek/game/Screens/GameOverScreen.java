@@ -51,7 +51,6 @@ public class GameOverScreen implements Screen {
         if (lvl == 1) {
             this.highscore = prefs.getInteger("highscore", 0);
             this.idkscount = prefs.getInteger("indekscount", 0);
-
             if (playerscore > highscore) {
                 prefs.putInteger("highscore", playerscore);
                 prefs.flush();

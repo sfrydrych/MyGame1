@@ -16,11 +16,11 @@ import com.sawek.game.Screens.PlayScreen;
 
 public class IndeksBox extends InteractiveTileObject {
     private static TiledMapTileSet tileSet;
-    private final int BLANK_COIN = 28;
+    private final int BLANK_COIN = 108;
 
     public IndeksBox(PlayScreen screen, MapObject object) {
         super(screen, object);
-        tileSet = map.getTileSets().getTileSet("tileset_gutter");
+        tileSet = map.getTileSets().getTileSet("tileset");
         fixture.setUserData(this);
         setCategoryFilter(MyGdxGame.INDEKS_BOX_BIT);
     }

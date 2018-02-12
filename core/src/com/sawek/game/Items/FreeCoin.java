@@ -15,10 +15,6 @@ import com.sawek.game.Sprites.CoinBox;
 import com.sawek.game.Sprites.IndeksBox;
 import com.sawek.game.Sprites.Player;
 
-/**
- * Created by Sławek on 2017-10-08.
- */
-
 public class FreeCoin extends Item {
     private float stateTime;
     private Animation<TextureRegion> blinkAnimation;
@@ -41,7 +37,7 @@ public class FreeCoin extends Item {
     @Override
     protected void defineItem() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(getX(), getY() + 8 / MyGdxGame.PPM);
+        bdef.position.set(getX() + 8 / MyGdxGame.PPM, getY() + 8 / MyGdxGame.PPM);
         bdef.type = BodyDef.BodyType.StaticBody;
         body = world.createBody(bdef);
 

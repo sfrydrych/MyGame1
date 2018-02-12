@@ -18,10 +18,6 @@ import com.badlogic.gdx.utils.Array;
 import com.sawek.game.MyGdxGame;
 import com.sawek.game.Screens.PlayScreen;
 
-/**
- * Created by Sławek on 2017-09-17.
- */
-
 public class Player extends Sprite {
     public State currentState;
     public State previousState;

@@ -37,7 +37,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.badlogic.gdx.Gdx.app;
 
-
 public class PlayScreen implements Screen {
 
 

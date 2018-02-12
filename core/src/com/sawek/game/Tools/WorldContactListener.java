@@ -13,10 +13,6 @@ import com.sawek.game.Sprites.IndeksBox;
 import com.sawek.game.Sprites.InteractiveTileObject;
 import com.sawek.game.Sprites.Player;
 
-/**
- * Created by Sławek on 2017-09-18.
- */
-
 public class WorldContactListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
@@ -54,7 +50,6 @@ public class WorldContactListener implements ContactListener {
                 break;
             case MyGdxGame.PLAYER_BIT | MyGdxGame.ENEMY_BIT:
                 if (fixA.getFilterData().categoryBits == MyGdxGame.PLAYER_BIT)
-                    if (fixA.getFilterData().categoryBits == MyGdxGame.PLAYER_BIT)
                         ((Player) fixA.getUserData()).hit((Enemy) fixB.getUserData());
                     else
                         ((Player) fixB.getUserData()).hit((Enemy) fixA.getUserData());

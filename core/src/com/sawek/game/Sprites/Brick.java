@@ -7,10 +7,6 @@ import com.sawek.game.Scenes.Hud;
 import com.sawek.game.Screens.PlayScreen;
 
 
-/**
- * Created by Sławek on 2017-09-18.
- */
-
 public class Brick extends InteractiveTileObject {
 
     public Brick(PlayScreen screen, MapObject object) {

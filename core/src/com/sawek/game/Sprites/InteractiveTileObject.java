@@ -17,10 +17,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.sawek.game.MyGdxGame;
 import com.sawek.game.Screens.PlayScreen;
 
-/**
- * Created by Sławek on 2017-09-18.
- */
-
 public abstract class InteractiveTileObject extends Sprite {
     protected World world;
     protected TiledMap map;

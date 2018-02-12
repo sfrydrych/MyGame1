@@ -46,7 +46,6 @@ public class StartScreen implements Screen {
         reg = new TextureRegion(MyGdxGame.manager.get("img/sky.png", Texture.class), 0, 0, 400, 240);
         this.game = game;
         this.playertimer = timer;
-        //this.playerindeks = indeks;
 
         Preferences prefs = app.getPreferences("mygdxgame");
         prefs.putInteger("level", level);
