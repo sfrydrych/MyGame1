@@ -44,6 +44,9 @@ public class SplashScreen3 implements Screen {
             @Override
             public void run() {
                 app.setScreen(app.mainMenuScreen);
+                music = MyGdxGame.manager.get("audio/music/theme.mp3", Music.class);
+                music.setLooping(true);
+                music.play();
             }
         };
 

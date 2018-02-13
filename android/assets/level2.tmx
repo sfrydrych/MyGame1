@@ -10,7 +10,7 @@
  </layer>
  <layer name="Graphic Layer" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJztmMsOgyAQRf1fFi76BTX98HZBEwIDIoyI4znJjfUBGa4MjF0WAAAAgD7eXrOw/uQyR7gnzgv0mS1/AayzCtLu3xIte3jJ27A/a15Bisv8hhRpbSJP+gi/Q1rYq89y96Xr1Hq6UD/DHj35K+kpjNh/JE/Z6yAkl4dPyckwBy3Vz5tXfL7JjydoeFG7vp3xH0Gpz1oPpHaxp0cJ51ocI98i8KeUv63zdxZ64m8dv+SdBS9rsTLOke+sd65J17Tiv+p99sTfOv6cd1bWwxqsjPHu+bsI9zT6H4XG/nmkfdzOak1TYtT4XijRx+vqOCwJT8/RF71Euqc=
+   eJztmMsOhCAMRf1fFi7mC8bMh88smIRAQYSKWM9JbnxC6NVCdVkAAAAA+nh7zcL6k8ts4Z44L9BntvwFsM4qSLt/S7Ss4SVvw/6seQUpLrMPKdLcRJ70EX6HtLBXn+WuS+ep9XShfoY9evJX0lMYsf5InrLWQUguD5+Sk2EOWqqfN6/4eJNvT9DwonZ+O+MfQanPWg+kdrGnRynN+3yLwJ9S/ra+v7PQM/7W+CXvLHhZi5U4Rz6z3ndNOqc1/queZ8/4W+PPeWdlPqzBSox3z99FuKbR/yg01s8j7eN2VmuaEqPie6FEH6+rx2FJeHqOvv2Uuqs=
   </data>
  </layer>
  <objectgroup name="Ground">

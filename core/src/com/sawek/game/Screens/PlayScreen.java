@@ -242,7 +242,7 @@ public class PlayScreen implements Screen {
     }
 
     public boolean win() {
-        if (player.currentState == Player.State.WINNER && player.getStateTimer() > 1) {
+        if (player.currentState == Player.State.WINNER) {
             return true;
         }
         return false;
