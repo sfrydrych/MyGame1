@@ -9,8 +9,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = MyGdxGame.TITLE;
-		config.width = MyGdxGame.V_WIDTH * 2;
-		config.height = MyGdxGame.V_HEIGHT * 2 + 64;
+		config.width = MyGdxGame.V_WIDTH * 3;
+		config.height = MyGdxGame.V_HEIGHT * 3 + 96;
 		config.addIcon("img/ii4.png", Files.FileType.Internal);
 		config.addIcon("img/ii8.png", Files.FileType.Internal);
 		config.addIcon("img/ii9.png", Files.FileType.Internal);
